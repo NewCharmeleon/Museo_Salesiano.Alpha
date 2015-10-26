@@ -34,23 +34,23 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="#">Logotipo</a>
+    <a class="navbar-brand" href="#">Museo Salesiano</a>
   </div>
  
   <!-- Agrupar los enlaces de navegación, los formularios y cualquier
        otro elemento que se pueda ocultar al minimizar la barra -->
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Enlace #1</a></li>
-      <li><a href="#">Enlace #2</a></li>
+      <li class="active"><a href="/personas/">Ver Personas</a></li>
+      <li><a href="#">Cargar Personas</a></li>
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-          Menú #1 <b class="caret"></b>
+          Menú en construccion <b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
-          <li><a href="#">Acción #1</a></li>
+          <li><a href="/personas/">Accion</a></li>
           <li><a href="#">Acción #2</a></li>
-          <li><a href="#">Acción #3</a></li>
+          <li><a href="/">Regresar</a></li>
           <li class="divider"></li>
           <li><a href="#">Acción #4</a></li>
           <li class="divider"></li>
@@ -67,7 +67,7 @@
     </form>
  
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="#">Enlace #3</a></li>
+      <li><a href="/">Regresar a la Pagina Principal</a></li>
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
           Menú #2 <b class="caret"></b>
@@ -98,9 +98,4 @@
     <script src="js/bootstrap.min.js"></script>
   </body>
 </html>
-
-
-
-
-
 

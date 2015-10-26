@@ -95,7 +95,7 @@ class ClienteController extends Controller
         
         $personas->delete();
         
-        return redirect('cliente');
+        return redirect('clientes');
         
                 
     }

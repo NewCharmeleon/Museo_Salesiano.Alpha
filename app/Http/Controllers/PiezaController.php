@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Pieza;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class PiezaController extends Controller
 {
@@ -23,6 +25,89 @@ class PiezaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function piezas ($descripcion = null)
+    {
+        //$personas=Persona::all();
+        //metodo 1:
+        //$resultado = DB::select ('SELECT * FROM operaciones WHERE banco',['ape'=> "%$apellido%"]);
+        
+        //metodo 2: laravel query builder
+        //$resultado = DB::table('cliente')
+        //              ->where('apellido','like', "%$apellido%")
+        //              ->orderBy('apellido')->get();
+        //metodo 3: modelos (eloquent orm)
+            if ($descripcion=='todos'){
+                $resultado = Pieza::
+                      orderBy('descripcion')->get();
+            }else{
+                $resultado = Pieza::where('descripcion','like', "%$descripcion%")
+                        ->orderBy('descripcion')->get();
+            }
+            return view('piezas', ["personas" => $resultado]);
+    }      
+    public function nuevo(Request $request)
+    {
+        //recibir los datos del request
+        //instanciar una nueva persona
+        //guardar en la base
+        
+        $descripcion = $request ->input("descripcion");
+        $clasificacion   = $request ->input("clasificacion");
+        $procedencia      = $request ->input("procedencia");
+        $autor     = $request ->input("autor");
+        $fechaEjecucion      = $request ->input("fechaEjecucion");
+        $tema      = $request ->input("tema");
+        $observacion      = $request ->input("observacion");
+        
+        
+        
+        $reglas = [
+            'descripcion' => 'required|min:3|max:100',
+            'clasificacion' => 'required|numeric|min:3|max:50',
+            'procedencia' => 'required|min:8|max:50',
+            'autor' => 'required|min:3|max:30',
+            'fechaEjecucion' => 'required|date|before:yesterday',
+            'tema' => 'required|min:8|max:50',
+            'observacion' => 'required|min:3|max:50',
+            
+
+
+            ];
+            //validamos...
+            $this->validate($request, $reglas);
+            $piezas = new Pieza;
+            $piezas ->descripcion = $descripcion;
+            $piezas ->clasificaciones_id = $clasificacion;
+            $piezas ->procedencia = $procedencia;
+            $piezas ->autor = $autor;
+            $piezas ->fecha_ejecucion = $fechaEjecucion;
+            $piezas ->tema = $tema;
+            $piezas ->observacion = $observacion;
+            
+            
+            
+            
+            
+            
+            $piezas ->save();
+            
+            return redirect('piezas');
+              
+    }      
+    public function borrar($id){
+        //recupero el registro por id de la base primweo ,lo borro
+        //redirijo
+        $piezas = Pieza::findOrFail($id);
+        
+        $piezas->delete();
+        
+        return redirect('piezas');
+        
+                
+    }
+
+
+
     public function create()
     {
         //

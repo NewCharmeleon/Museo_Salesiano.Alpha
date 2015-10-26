@@ -136,6 +136,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
         //'Illuminate\Html\HtmlServiceProvider',
 
         /*
@@ -145,6 +146,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        
 
     ],
 
@@ -196,7 +198,9 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
        // 'Form'     => 'Illuminate\Html\FormFacade',
        // 'Html'     => 'Illuminate\Html\HtmlFacade',
-        
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+
     ],
 
 ];
+

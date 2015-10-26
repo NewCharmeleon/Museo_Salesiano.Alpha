@@ -55,7 +55,7 @@ return [
         'mysql' => [
             'driver'    => 'mysql',
             'host'      => env('DB_HOST', 'localhost'),
-            'database'  => env('DB_DATABASE', 'personasbbdd'),
+            'database'  => env('DB_DATABASE', 'MuseoSalesiano'),
             'username'  => env('DB_USERNAME', 'root'),
             'password'  => env('DB_PASSWORD', 'udc'),
             'charset'   => 'utf8',

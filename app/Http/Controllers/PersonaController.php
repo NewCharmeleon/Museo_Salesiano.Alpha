@@ -25,7 +25,7 @@ class PersonaController extends Controller
        // return view('personas.index', compact('personas'));
                 
     }
-    public function personas ($apellido = null)
+    public function personas ($nombre = null)
     {
         //$personas=Persona::all();
         //metodo 1:
@@ -36,12 +36,12 @@ class PersonaController extends Controller
         //              ->where('apellido','like', "%$apellido%")
         //              ->orderBy('apellido')->get();
         //metodo 3: modelos (eloquent orm)
-            if ($apellido=='todos'){
+            if ($nombre=='todos'){
                 $resultado = Persona::
-                      orderBy('apellido')->get();
+                      orderBy('nombre')->get();
             }else{
-                $resultado = Persona::where('apellido','like', "%$apellido%")
-                        ->orderBy('apellido')->get();
+                $resultado = Persona::where('nombre','like', "%$nombre%")
+                        ->orderBy('nombre')->get();
             }
             return view('personas', ["personas" => $resultado]);
     }      
@@ -51,34 +51,39 @@ class PersonaController extends Controller
         //instanciar una nueva persona
         //guardar en la base
         
-        $apellido = $request ->input("apellido");
-        $nombre   = $request ->input("nombre");
-        $documento      = $request ->input("documento");
-        /*$sexo      = $request ->input("sexo");
-        $nacionalidad      = $request ->input("nacionalidad");
-        $archivosExt      = $request ->input("archivos_externos");
-        $fechaExp      = $request ->input("fecha_expedicion");
-        $fechaVenc      = $request ->input("fecha_vencimiento");
+        $nombre = $request ->input("nombre");
+        $cuit   = $request ->input("cuit_cuil");
+        $telefono      = $request ->input("telefono");
         $domicilio      = $request ->input("domicilio");
-        $ciudad      = $request ->input("ciudad");
-        $departamento      = $request ->input("departamento");
-        $provincia      = $request ->input("provincia");
-        $fechaNac      = $request ->input("fecha_nacimiento");
-        $ugarNac      = $request ->input("lugar_nacimiento");*/
-        
+        $email      = $request ->input("email");
+        $fechaCarga      = $request ->input("fecha_carga_persona");
+                
         
         $reglas = [
-            'apellido' => 'require|min:3|max:50',
-            'nombre' => 'require|min:3|max:50',
-            'documento' => 'require|min:11|max:99999999'
+            'nombre' => 'required|regex:[a-zA-Záéíóúñ\s]|min:3|max:30',
+            'cuit' => 'required|regex:[0-9]|min:9|max:13',
+            'telefono' => 'required|numeric|min:6|max:15',
+			'domicilio' => 'required|regex:[0-9a-zA-Záéíóúñ\s]|min:6|max:50',
+            'email' => 'required|email|min:6',
+            'fechaCarga' => 'required|date|min:9|before:yesterday'
+
+
             ];
             //validamos...
-            $this->validate($request, $reglas);
-            $personas = new Persona;
-            $personas ->apellido = $apellido;
-            $personas ->nombre = $nombre;
-            $personas ->documento = $documento;
-            
+           /*  if ($validator->fails()) {
+            return Redirect::to('personas/nuevo')
+                ->withErrors($validator)
+                ->withInput(Input::except('password'));
+            } else {*/
+                    $this->validate($request, $reglas);
+                    $personas = new Persona;
+                    $personas ->nombre = $nombre;
+                    $personas ->cuit_cuil = $cuit;
+                    $personas ->telefono = $telefono;
+        			$personas ->domicilio = $domicilio;
+                    $personas ->email = $email;
+                    $personas ->fecha_carga_persona = $fechaCarga;
+           // }
             
             
             
