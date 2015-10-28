@@ -26,13 +26,20 @@ Route::get('/', function () {
     
 });*/
 //Ver 
+
 Route::get('/personas', 'PersonaController@personas');
 Route::get('/clientes', 'ClienteController@cliente');
 Route::get('/piezas', 'PiezaController@piezas');
 
 //Route::get('/personas/{apellido}', 'PersonaController@personas');
 //Insertar
-Route::get('/personas/nuevo', 'PersonaController@nuevo');
+
+//Route::get('/personas/nuevo', 'PersonaController@nuevo';
+
+
+Route::get('/personas/nuevo', [
+    'as' => 'nuevo', 'uses' => 'PersonaController@nuevo'
+]);
 Route::get('/clientes/nuevo', 'ClienteController@nuevo');
 Route::get('/piezas/nuevo', 'PiezaController@nuevo');
 //Borrar

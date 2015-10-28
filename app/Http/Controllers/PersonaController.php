@@ -70,12 +70,12 @@ class PersonaController extends Controller
 
             ];
             //validamos...
-           /*  if ($validator->fails()) {
+             /*if ($validate->fails()) {
             return Redirect::to('personas/nuevo')
-                ->withErrors($validator)
+                ->withErrors($validate)
                 ->withInput(Input::except('password'));
             } else {*/
-                    $this->validate($request, $reglas);
+                   $this->validate($request, $reglas);
                     $personas = new Persona;
                     $personas ->nombre = $nombre;
                     $personas ->cuit_cuil = $cuit;
@@ -89,8 +89,8 @@ class PersonaController extends Controller
             
             
             $personas ->save();
-            
-            return redirect('personas');
+            //return view ('personasnuevo');
+            return redirect('personasnuevo');
               
     }      
     public function borrar($id){

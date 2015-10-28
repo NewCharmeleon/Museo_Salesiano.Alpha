@@ -5,7 +5,7 @@
     <title>@yield('title')</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Plantilla básica de Bootstrap</title>
+    <title>Museo Salesiano</title>
  
     <!-- CSS de Bootstrap -->
      <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -34,7 +34,7 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="#">Museo Salesiano</a>
+    <a class="navbar-brand" href="/">Museo Salesiano</a>
   </div>
  
   <!-- Agrupar los enlaces de navegación, los formularios y cualquier
@@ -42,14 +42,14 @@
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
       <li class="active"><a href="/personas/">Ver Personas</a></li>
-      <li><a href="#">Cargar Personas</a></li>
+      <li><a href="../personas/nuevo/">Cargar Personas</a></li>
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
           Menú en construccion <b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
           <li><a href="/personas/">Accion</a></li>
-          <li><a href="#">Acción #2</a></li>
+          <li><a href="/personas/nuevo">Acción #2</a></li>
           <li><a href="/">Regresar</a></li>
           <li class="divider"></li>
           <li><a href="#">Acción #4</a></li>
