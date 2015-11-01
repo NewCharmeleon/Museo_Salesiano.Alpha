@@ -138,7 +138,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         'Illuminate\Html\HtmlServiceProvider',
-
+        'Former\FormerServiceProvider',
         /*
          * Application Service Providers...
          */
@@ -146,7 +146,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-		'Former\FormerServiceProvider',
+		
         
 
     ],

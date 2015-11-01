@@ -50,47 +50,48 @@ class PersonaController extends Controller
         //recibir los datos del request
         //instanciar una nueva persona
         //guardar en la base
-        
+        //dd(daf);
         $nombre = $request ->input("nombre");
         $cuit   = $request ->input("cuit_cuil");
         $telefono      = $request ->input("telefono");
         $domicilio      = $request ->input("domicilio");
         $email      = $request ->input("email");
-        $fechaCarga      = $request ->input("fecha_carga_persona");
+        $fechaCarga      = $request ->input("fecha_carga");
                 
         
         $reglas = [
-            'nombre' => 'required|regex:[a-zA-Záéíóúñ\s]|min:3|max:30',
-            'cuit' => 'required|regex:[0-9]|min:9|max:13',
-            'telefono' => 'required|numeric|min:6|max:15',
-			'domicilio' => 'required|regex:[0-9a-zA-Záéíóúñ\s]|min:6|max:50',
-            'email' => 'required|email|min:6',
-            'fechaCarga' => 'required|date|min:9|before:yesterday'
+            'nombre' => 'required|min:3|max:30',
+            'cuit_cuil' => 'required|numeric|digits_between:9,13',
+            'telefono' => 'required|numeric|min:6|digits_between:7,25',
+			'domicilio' => 'required|min:6|max:50',
+            'email' => 'required|unique:personas,email|email|min:6',
+            'fecha_carga' => 'required|date|min:9|before:yesterday'
 
 
             ];
             //validamos...
              /*if ($validate->fails()) {
-            return Redirect::to('personas/nuevo')
+            return Redirect::to('nueva')
                 ->withErrors($validate)
                 ->withInput(Input::except('password'));
             } else {*/
                    $this->validate($request, $reglas);
                     $personas = new Persona;
+                    //$personas ->id = null;
                     $personas ->nombre = $nombre;
                     $personas ->cuit_cuil = $cuit;
                     $personas ->telefono = $telefono;
         			$personas ->domicilio = $domicilio;
                     $personas ->email = $email;
                     $personas ->fecha_carga_persona = $fechaCarga;
-           // }
+            //}
             
             
             
             
             $personas ->save();
             //return view ('personasnuevo');
-            return redirect('personasnuevo');
+            return redirect('personas');
               
     }      
     public function borrar($id){
@@ -114,7 +115,9 @@ class PersonaController extends Controller
      */
     public function create()
     {
-        //
+        // // Creamos un nuevo objeto User para ser usado por el helper Form::model
+        $persona = new Persona;
+      return View::make('personas/form')->with('persona', $persona);
     }
 
     /**

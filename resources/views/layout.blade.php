@@ -42,7 +42,7 @@
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
       <li class="active"><a href="/personas/">Ver Personas</a></li>
-      <li><a href="../personas/nuevo/">Cargar Personas</a></li>
+      <li><a href="../alta/">Cargar Personas</a></li>
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
           Menú en construccion <b class="caret"></b>

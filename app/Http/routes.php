@@ -34,12 +34,13 @@ Route::get('/piezas', 'PiezaController@piezas');
 //Route::get('/personas/{apellido}', 'PersonaController@personas');
 //Insertar
 
-//Route::get('/personas/nuevo', 'PersonaController@nuevo';
+Route::get('/alta', function () {
+    return view('alta');
+});
+//Route::post('personas.nuevo', 'PersonaController@nuevo');
 
 
-Route::get('/personas/nuevo', [
-    'as' => 'nuevo', 'uses' => 'PersonaController@nuevo'
-]);
+Route::post('/personas/nuevo', 'PersonaController@nuevo');
 Route::get('/clientes/nuevo', 'ClienteController@nuevo');
 Route::get('/piezas/nuevo', 'PiezaController@nuevo');
 //Borrar
