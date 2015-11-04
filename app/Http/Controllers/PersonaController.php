@@ -78,12 +78,12 @@ class PersonaController extends Controller
                    $this->validate($request, $reglas);
                     $personas = new Persona;
                     //$personas ->id = null;
-                    $personas ->nombre = $nombre;
-                    $personas ->cuit_cuil = $cuit;
-                    $personas ->telefono = $telefono;
-        			$personas ->domicilio = $domicilio;
-                    $personas ->email = $email;
-                    $personas ->fecha_carga_persona = $fechaCarga;
+                    $personas->nombre = $nombre;
+                    $personas->cuit_cuil = $cuit;
+                    $personas->telefono = $telefono;
+        			$personas->domicilio = $domicilio;
+                    $personas->email = $email;
+                    $personas->fecha_carga_persona = $fechaCarga;
             //}
             
             
