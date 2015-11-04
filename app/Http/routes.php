@@ -37,16 +37,27 @@ Route::get('/piezas', 'PiezaController@piezas');
 Route::get('/alta', function () {
     return view('alta');
 });
+Route::get('personas/{id}/editar', function () {
+    return view('editar');
+});
 //Route::post('personas.nuevo', 'PersonaController@nuevo');
 
 
 Route::post('/personas/nuevo', 'PersonaController@nuevo');
-Route::get('/clientes/nuevo', 'ClienteController@nuevo');
-Route::get('/piezas/nuevo', 'PiezaController@nuevo');
+Route::post('/clientes/nuevo', 'ClienteController@nuevo');
+Route::post('/piezas/nuevo', 'PiezaController@nuevo');
+//editar
+Route::patch('/personas/{id}', 'PersonaController@update');
+Route::patch('/clientes/{id}/editar', 'ClienteController@editar');
+Route::patch('/piezas/{id}/editar', 'PiezaController@editar');
+
+
+
+
 //Borrar
-Route::get('/personas/{id}/borrar', 'PersonaController@borrar');
-Route::get('/clientes/{id}/borrar', 'ClienteController@borrar');
-Route::get('/piezas/{id}/borrar', 'PiezaController@borrar');
+Route::post('/personas/{id}/borrar', 'PersonaController@borrar');
+Route::post('/clientes/{id}/borrar', 'ClienteController@borrar');
+Route::post('/piezas/{id}/borrar', 'PiezaController@borrar');
 //Route::resources('/personas','PersonaController');
     
 

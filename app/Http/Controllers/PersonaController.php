@@ -38,10 +38,10 @@ class PersonaController extends Controller
         //metodo 3: modelos (eloquent orm)
             if ($nombre=='todos'){
                 $resultado = Persona::
-                      orderBy('nombre')->get();
+                      orderBy('id')->get();
             }else{
                 $resultado = Persona::where('nombre','like', "%$nombre%")
-                        ->orderBy('nombre')->get();
+                        ->orderBy('id')->get();
             }
             return view('personas', ["personas" => $resultado]);
     }      
@@ -56,7 +56,7 @@ class PersonaController extends Controller
         $telefono      = $request ->input("telefono");
         $domicilio      = $request ->input("domicilio");
         $email      = $request ->input("email");
-        $fechaCarga      = $request ->input("fecha_carga");
+       // $fechaCarga      = $request ->input("fecha_carga");
                 
         
         $reglas = [
@@ -65,7 +65,7 @@ class PersonaController extends Controller
             'telefono' => 'required|numeric|min:6|digits_between:7,25',
 			'domicilio' => 'required|min:6|max:50',
             'email' => 'required|unique:personas,email|email|min:6',
-            'fecha_carga' => 'required|date|min:9|before:yesterday'
+            //'fecha_carga' => 'required|date|min:9|before:yesterday'
 
 
             ];
@@ -83,12 +83,9 @@ class PersonaController extends Controller
                     $personas->telefono = $telefono;
         			$personas->domicilio = $domicilio;
                     $personas->email = $email;
-                    $personas->fecha_carga_persona = $fechaCarga;
+                    //$personas->fecha_carga_persona = 'now';
             //}
-            
-            
-            
-            
+                 
             $personas ->save();
             //return view ('personasnuevo');
             return redirect('personas');
@@ -105,7 +102,26 @@ class PersonaController extends Controller
         
                 
     }
-            
+    public function editar($id){
+        //recupero el registro por id de la base primweo ,lo borro
+        //redirijo
+        $personas = Persona::findOrFail($id);
+        
+        //$personas->delete();
+        
+        return view('personas.editar', compact('personas'));
+        
+                
+    }
+     public function update($id)
+{
+   //protected $request;
+   $personasUpdate=Request::all();
+   // $personasUpdate= $this->request->all();
+   $personas=Persona::find($id);
+   $personas->update($personasUpdate);
+   return redirect('personas');
+}       
             
 
     /**
@@ -160,10 +176,10 @@ class PersonaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+   /* public function update(Request $request, $id)
     {
         //
-    }
+    }*/
 
     /**
      * Remove the specified resource from storage.

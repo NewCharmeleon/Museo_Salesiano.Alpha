@@ -1,16 +1,19 @@
 @extends('layout')
-@section('title','Carga de Personas')
+@section('title','Edicion de Personas')
 
 @section ('contenido')
 
-<h1>Carga de Personas</h1>
+<h1>Edicion de Persona: </h1>
                 @foreach($errors->all() as $error)
                 <p class="alert alert-danger">{{$error}}</p>
             @endforeach
-    {!! Form::open(['url' => '/personas/nuevo']) !!}
+    {!! Form::model($personas,['method' => 'PATCH', 'url' => ['/personas/editar', $personas->id]]) !!}
     @include('codigocomun.camposFormularios')
+     
     <div class="form-group">
-        {!! Form::submit('Cargar', ['class' => 'btn btn-primary form-control']) !!}
+   
+        {!! Form::submit('Actualizar Persona', ['class' => 'btn btn-primary form-control']) !!}
+     <input type="hidden" name="_method" value="PATCH">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     </div>
     {!! Form::close() !!}
