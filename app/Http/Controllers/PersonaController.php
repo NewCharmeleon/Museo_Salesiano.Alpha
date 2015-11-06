@@ -10,6 +10,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
+//use Request;
+
 class PersonaController extends Controller
 {
     /**
@@ -109,18 +111,29 @@ class PersonaController extends Controller
         
         //$personas->delete();
         
-        return view('personas.editar', compact('personas'));
-        
+        return view('editar', ['personas' => $personas]);
+        //return view('editar', compact('personas'));
                 
     }
-     public function update($id)
+    
+    public function update($id, Request $request)
 {
    //protected $request;
-   $personasUpdate=Request::all();
-   // $personasUpdate= $this->request->all();
-   $personas=Persona::find($id);
-   $personas->update($personasUpdate);
-   return redirect('personas');
+  $personas=Persona::findOrFail($id);
+   //$personas=fill(Request::all());
+ // $personasUpdate=$request->all();
+   //dd('personas');
+   //$personas->update($personasUpdate);
+  // $personadatos = Input::all();
+   //$personas = Persona::find($id);
+   //$personas->update($personasdatos);
+   //$personas->save();
+   //Session::flash('flash_message', 'Persona Actualizada satisfactoriamente');
+   
+    $input = $request->all();
+    $personas->fill($input)->save();
+   return redirect()->back()->with('key', 'You have done successfully');
+    //return redirect('personas');
 }       
             
 

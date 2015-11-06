@@ -5,6 +5,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Persona extends Model
 {
+	protected $fillable = [
+        'nombre',
+        'cuit_cuil',
+        'telefono',
+        'domicilio',
+        'email'
+        
+    ];
+
+
+
 	//public $timestamps = false;
     public function getPersonaAtribute(){
         

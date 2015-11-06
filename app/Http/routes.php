@@ -37,9 +37,9 @@ Route::get('/piezas', 'PiezaController@piezas');
 Route::get('/alta', function () {
     return view('alta');
 });
-Route::get('personas/{id}/editar', function () {
-    return view('editar');
-});
+
+Route::get('/personas/{id}/editar', 'PersonaController@editar');
+Route::patch('/personas/editar/{id}', 'PersonaController@update');
 //Route::post('personas.nuevo', 'PersonaController@nuevo');
 
 
@@ -47,7 +47,7 @@ Route::post('/personas/nuevo', 'PersonaController@nuevo');
 Route::post('/clientes/nuevo', 'ClienteController@nuevo');
 Route::post('/piezas/nuevo', 'PiezaController@nuevo');
 //editar
-Route::patch('/personas/{id}', 'PersonaController@update');
+
 Route::patch('/clientes/{id}/editar', 'ClienteController@editar');
 Route::patch('/piezas/{id}/editar', 'PiezaController@editar');
 
