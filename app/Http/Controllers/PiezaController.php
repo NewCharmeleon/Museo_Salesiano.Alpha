@@ -43,7 +43,7 @@ class PiezaController extends Controller
                 $resultado = Pieza::where('descripcion','like', "%$descripcion%")
                         ->orderBy('descripcion')->get();
             }
-            return view('piezas', ["personas" => $resultado]);
+            return view('piezas', ["piezas" => $resultado]);
     }      
     public function nuevo(Request $request)
     {
@@ -66,7 +66,7 @@ class PiezaController extends Controller
             'clasificacion' => 'required|numeric|min:3|max:50',
             'procedencia' => 'required|min:8|max:50',
             'autor' => 'required|min:3|max:30',
-            'fechaEjecucion' => 'required|date|before:yesterday',
+            //'fechaEjecucion' => 'required|date|before:yesterday',
             'tema' => 'required|min:8|max:50',
             'observacion' => 'required|min:3|max:50',
             
@@ -80,7 +80,7 @@ class PiezaController extends Controller
             $piezas ->clasificaciones_id = $clasificacion;
             $piezas ->procedencia = $procedencia;
             $piezas ->autor = $autor;
-            $piezas ->fecha_ejecucion = $fechaEjecucion;
+            //$piezas ->fecha_ejecucion = $fechaEjecucion;
             $piezas ->tema = $tema;
             $piezas ->observacion = $observacion;
             
@@ -105,7 +105,28 @@ class PiezaController extends Controller
         
                 
     }
-
+    public function editar($id){
+        //recupero el registro por id de la base primweo ,lo borro
+        //redirijo
+        $piezas = Pieza::findOrFail($id);
+        
+        //$personas->delete();
+        
+        return view('editarPieza', ['piezas' => $piezas]);
+        //return view('editar', compact('personas'));
+                
+    }
+    
+    public function update($id, Request $request)
+{
+   
+   //Session::flash('flash_message', 'Persona Actualizada satisfactoriamente');
+    $piezas=Pieza::findOrFail($id);
+    $input = $request->all();
+    $piezas->fill($input)->save();
+   return redirect()->back()->with('key', 'You have done successfully');
+    //return redirect('personas');
+}       
 
 
     public function create()
@@ -153,10 +174,7 @@ class PiezaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+    
 
     /**
      * Remove the specified resource from storage.

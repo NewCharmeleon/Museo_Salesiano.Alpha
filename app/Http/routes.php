@@ -34,13 +34,18 @@ Route::get('/piezas', 'PiezaController@piezas');
 //Route::get('/personas/{apellido}', 'PersonaController@personas');
 //Insertar
 
-Route::get('/alta', function () {
-    return view('alta');
+Route::get('/altaPersona', function () {
+    return view('altaPersona');
+});
+Route::get('/altaPieza', function () {
+    return view('altaPieza');
 });
 
-Route::get('/personas/{id}/editar', 'PersonaController@editar');
-Route::patch('/personas/editar/{id}', 'PersonaController@update');
+Route::get('/personas/{id}/editarPersona', 'PersonaController@editar');
+Route::patch('/personas/editarPersona/{id}', 'PersonaController@update');
 //Route::post('personas.nuevo', 'PersonaController@nuevo');
+Route::get('/piezas/{id}/editarPieza', 'PiezaController@editar');
+Route::patch('/piezas/editarPieza/{id}', 'PiezaController@update');
 
 
 Route::post('/personas/nuevo', 'PersonaController@nuevo');
@@ -48,8 +53,8 @@ Route::post('/clientes/nuevo', 'ClienteController@nuevo');
 Route::post('/piezas/nuevo', 'PiezaController@nuevo');
 //editar
 
-Route::patch('/clientes/{id}/editar', 'ClienteController@editar');
-Route::patch('/piezas/{id}/editar', 'PiezaController@editar');
+Route::patch('/clientes/{id}/editarPersona', 'ClienteController@editar');
+//Route::patch('/piezas/{id}/editarPieza', 'PiezaController@editar');
 
 
 

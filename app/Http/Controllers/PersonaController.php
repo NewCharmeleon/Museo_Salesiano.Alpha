@@ -111,25 +111,16 @@ class PersonaController extends Controller
         
         //$personas->delete();
         
-        return view('editar', ['personas' => $personas]);
+        return view('editarPersona', ['personas' => $personas]);
         //return view('editar', compact('personas'));
                 
     }
     
     public function update($id, Request $request)
 {
-   //protected $request;
-  $personas=Persona::findOrFail($id);
-   //$personas=fill(Request::all());
- // $personasUpdate=$request->all();
-   //dd('personas');
-   //$personas->update($personasUpdate);
-  // $personadatos = Input::all();
-   //$personas = Persona::find($id);
-   //$personas->update($personasdatos);
-   //$personas->save();
-   //Session::flash('flash_message', 'Persona Actualizada satisfactoriamente');
    
+   //Session::flash('flash_message', 'Persona Actualizada satisfactoriamente');
+    $personas=Persona::findOrFail($id);
     $input = $request->all();
     $personas->fill($input)->save();
    return redirect()->back()->with('key', 'You have done successfully');
