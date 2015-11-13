@@ -42,8 +42,16 @@
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
       <li class="active"><a href="/personas/">Personas</a></li>
-      <li><a href="/piezas/">Piezas</a></li>
       <li><a href="/usuarios/">Usuarios</a></li>
+      <li><a href="/piezas/">Piezas</a></li>
+       <li><a href="/clasificaciones/">Clasificaciones</a></li>
+      <li><a href="/revisiones/">Revisiones</a></li>
+       <li><a href="/fotos/">Fotos</a></li>
+      <li><a href="/fondos/">Fondos</a></li>
+       <li><a href="/donaciones/">Donaciones</a></li>
+      <li><a href="/donantes/">Donantes</a></li>
+
+
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
           Menú en construccion <b class="caret"></b>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 09-11-2015 a las 14:48:15
+-- Tiempo de generación: 13-11-2015 a las 17:11:58
 -- Versión del servidor: 5.6.19-0ubuntu0.14.04.1-log
 -- Versión de PHP: 5.5.9-1ubuntu4.13
 
@@ -31,7 +31,9 @@ CREATE TABLE IF NOT EXISTS `clasificaciones` (
   `descripcion` char(50) NOT NULL,
   `fondos_id` int(11) NOT NULL,
   `usuarios_carga_id` int(11) NOT NULL,
-  `fecha_carga_id` date NOT NULL,
+  `fecha_carga_id` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_clasificaciones_fondos1_idx` (`fondos_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
@@ -40,8 +42,8 @@ CREATE TABLE IF NOT EXISTS `clasificaciones` (
 -- Volcado de datos para la tabla `clasificaciones`
 --
 
-INSERT INTO `clasificaciones` (`id`, `descripcion`, `fondos_id`, `usuarios_carga_id`, `fecha_carga_id`) VALUES
-(1, 'Pieza Aborigen', 1, 1, '2010-12-05');
+INSERT INTO `clasificaciones` (`id`, `descripcion`, `fondos_id`, `usuarios_carga_id`, `fecha_carga_id`, `updated_at`, `created_at`) VALUES
+(1, 'Pieza Aborigen', 1, 1, '2010-12-05 03:00:00', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -53,7 +55,9 @@ CREATE TABLE IF NOT EXISTS `donaciones` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `donantes_id` int(11) NOT NULL,
   `piezas_id` int(11) NOT NULL,
-  `fecha_donacion` date NOT NULL,
+  `fecha_donacion` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_donaciones_donantes1_idx` (`donantes_id`),
   KEY `fk_donaciones_piezas1_idx` (`piezas_id`)
@@ -63,8 +67,8 @@ CREATE TABLE IF NOT EXISTS `donaciones` (
 -- Volcado de datos para la tabla `donaciones`
 --
 
-INSERT INTO `donaciones` (`id`, `donantes_id`, `piezas_id`, `fecha_donacion`) VALUES
-(1, 1, 1, '2015-01-01');
+INSERT INTO `donaciones` (`id`, `donantes_id`, `piezas_id`, `fecha_donacion`, `updated_at`, `created_at`) VALUES
+(1, 1, 1, '2015-01-01 03:00:00', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -75,7 +79,9 @@ INSERT INTO `donaciones` (`id`, `donantes_id`, `piezas_id`, `fecha_donacion`) VA
 CREATE TABLE IF NOT EXISTS `donantes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `personas_id` int(11) NOT NULL,
-  `fecha_carga` date NOT NULL,
+  `fecha_carga` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_donantes_personas_idx` (`personas_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
@@ -84,8 +90,8 @@ CREATE TABLE IF NOT EXISTS `donantes` (
 -- Volcado de datos para la tabla `donantes`
 --
 
-INSERT INTO `donantes` (`id`, `personas_id`, `fecha_carga`) VALUES
-(1, 2, '2015-09-30');
+INSERT INTO `donantes` (`id`, `personas_id`, `fecha_carga`, `updated_at`, `created_at`) VALUES
+(1, 2, '2015-09-30 03:00:00', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -97,7 +103,9 @@ CREATE TABLE IF NOT EXISTS `fondos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion` char(50) NOT NULL,
   `usuarios_id` int(11) NOT NULL,
-  `fecha_carga_fondo` date NOT NULL,
+  `fecha_carga_fondo` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_fondos_usuarios1_idx` (`usuarios_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
@@ -106,8 +114,8 @@ CREATE TABLE IF NOT EXISTS `fondos` (
 -- Volcado de datos para la tabla `fondos`
 --
 
-INSERT INTO `fondos` (`id`, `descripcion`, `usuarios_id`, `fecha_carga_fondo`) VALUES
-(1, 'unFondo', 1, '2015-10-19');
+INSERT INTO `fondos` (`id`, `descripcion`, `usuarios_id`, `fecha_carga_fondo`, `updated_at`, `created_at`) VALUES
+(1, 'unFondo', 1, '2015-10-19 03:00:00', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -119,6 +127,8 @@ CREATE TABLE IF NOT EXISTS `fotos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `piezas_id` int(11) NOT NULL,
   `fotos_id` int(11) NOT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_fotos_piezas1_idx` (`piezas_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
@@ -127,8 +137,8 @@ CREATE TABLE IF NOT EXISTS `fotos` (
 -- Volcado de datos para la tabla `fotos`
 --
 
-INSERT INTO `fotos` (`id`, `piezas_id`, `fotos_id`) VALUES
-(1, 1, 0);
+INSERT INTO `fotos` (`id`, `piezas_id`, `fotos_id`, `updated_at`, `created_at`) VALUES
+(1, 1, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -147,7 +157,7 @@ CREATE TABLE IF NOT EXISTS `log_Museo` (
   `datos_nuevos` char(200) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_log_usuarios1` (`usuarios_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
 -- Volcado de datos para la tabla `log_Museo`
@@ -156,7 +166,8 @@ CREATE TABLE IF NOT EXISTS `log_Museo` (
 INSERT INTO `log_Museo` (`id`, `usuarios_id`, `operacion`, `fecha`, `tabla_modificada`, `columnas_modificadas`, `datos_viejos`, `datos_nuevos`) VALUES
 (1, 1, 'INSERT', '2015-11-03 23:06:59', 'personas', 'id,nombre, cuit_cuil, telefono, domicilio, email, fecha_carga_persona', 'Primera carga de Persona - No existen datos anteriores', 'adrian-11555555557-4425878-adsjfh jadf 173-adfafd@yahoo.com-2014-12-01'),
 (6, 1, 'INSERT', '2015-11-04 09:39:43', 'personas', 'id,nombre, cuit_cuil, telefono, domicilio, email, fecha_carga_persona', 'Primera carga de Persona - No existen datos anteriores', 'Miguel Angel-11222223338-4444444-su calle-SuMail@yahoo.com-2015-11-04 09:39:43'),
-(7, 1, 'INSERT', '2015-11-04 09:40:49', 'personas', 'id,nombre, cuit_cuil, telefono, domicilio, email, fecha_carga_persona', 'Primera carga de Persona - No existen datos anteriores', 'Matias Ale-11456786788-11425145-Buenos Aires 145-Toyloco@gmail.com-2015-11-04 09:40:49');
+(7, 1, 'INSERT', '2015-11-04 09:40:49', 'personas', 'id,nombre, cuit_cuil, telefono, domicilio, email, fecha_carga_persona', 'Primera carga de Persona - No existen datos anteriores', 'Matias Ale-11456786788-11425145-Buenos Aires 145-Toyloco@gmail.com-2015-11-04 09:40:49'),
+(8, 1, 'INSERT', '2015-11-09 15:23:13', 'personas', 'id,nombre, cuit_cuil, telefono, domicilio, email, fecha_carga_persona', 'Primera carga de Persona - No existen datos anteriores', 'Juan Roman Riquelme-11356487453-11412568-Tierra del Fuego 543-JJRiquelme@yahoo.com.ar-2015-11-09 15:23:13');
 
 -- --------------------------------------------------------
 
@@ -176,7 +187,7 @@ CREATE TABLE IF NOT EXISTS `personas` (
   `created_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `cuit_cuil_UNIQUE` (`cuit_cuil`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
 -- Volcado de datos para la tabla `personas`
@@ -186,7 +197,8 @@ INSERT INTO `personas` (`id`, `nombre`, `cuit_cuil`, `telefono`, `domicilio`, `e
 (1, 'Adrian Arias', '20-25448798-4', 2804456897, 'Corrientes 455', 'djfkld@gmail.com', '2015-09-17 03:00:00', NULL, NULL),
 (2, 'Pepe Pipon', '20-22222222-3', 2804111111, 'Su Calle 111', 'Sumail@yahoo.com.ar', '2015-01-01 03:00:00', NULL, NULL),
 (7, 'Juan Perez', '', 4578798, '', 'fiambrin@gmail', '2015-11-04 12:39:43', '2015-11-06 22:58:36', '2015-11-04 15:39:43'),
-(8, 'Matias Ale', '11456786788', 11425145, 'Buenos Aires 145', 'Toyloco@gmail.com', '2015-11-04 12:40:49', '2015-11-04 15:40:49', '2015-11-04 15:40:49');
+(8, 'Matias Ale', '11456786788', 11425145, 'Buenos Aires 145', 'Toyloco@gmail.com', '2015-11-04 12:40:49', '2015-11-04 15:40:49', '2015-11-04 15:40:49'),
+(9, 'Juan Román Riquelme', '11356487453', 11412568, 'Tierra del Fuego 543', 'JJRiquelme@yahoo.com.ar', '2015-11-09 18:23:13', '2015-11-09 21:23:34', '2015-11-09 21:23:13');
 
 --
 -- Disparadores `personas`
@@ -235,7 +247,7 @@ CREATE TABLE IF NOT EXISTS `piezas` (
   `clasificaciones_id` int(11) NOT NULL,
   `procedencia` char(50) NOT NULL,
   `autor` char(30) NOT NULL,
-  `fecha_ejecucion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fecha_ejecucion` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `tema` char(50) NOT NULL,
   `observacion` char(50) NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -281,9 +293,11 @@ CREATE TABLE IF NOT EXISTS `revisiones` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `usuarios_revision_id` int(11) NOT NULL,
   `piezas_id` int(11) NOT NULL,
-  `fecha_revision` date NOT NULL,
+  `fecha_revision` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `estado_de_conservacion` char(1) NOT NULL,
   `ubicacion` char(1) NOT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_revisiones_usuarios1_idx` (`usuarios_revision_id`),
   KEY `fk_revisiones_piezas1_idx` (`piezas_id`)
@@ -293,8 +307,8 @@ CREATE TABLE IF NOT EXISTS `revisiones` (
 -- Volcado de datos para la tabla `revisiones`
 --
 
-INSERT INTO `revisiones` (`id`, `usuarios_revision_id`, `piezas_id`, `fecha_revision`, `estado_de_conservacion`, `ubicacion`) VALUES
-(1, 1, 1, '2015-10-20', 'D', 'd');
+INSERT INTO `revisiones` (`id`, `usuarios_revision_id`, `piezas_id`, `fecha_revision`, `estado_de_conservacion`, `ubicacion`, `updated_at`, `created_at`) VALUES
+(1, 1, 1, '2015-10-20 03:00:00', 'D', 'd', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -307,7 +321,11 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `personas_id` int(11) NOT NULL,
   `nombre_usuario` char(30) NOT NULL,
   `password` varchar(10) NOT NULL,
+  `perfil_usuario` char(13) NOT NULL DEFAULT 'operador',
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `perfil_UNIQUE` (`perfil_usuario`),
   KEY `fk_usuarios_personas1_idx` (`personas_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
@@ -315,8 +333,8 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `personas_id`, `nombre_usuario`, `password`) VALUES
-(1, 1, 'Dongato', 'Dongato123');
+INSERT INTO `usuarios` (`id`, `personas_id`, `nombre_usuario`, `password`, `perfil_usuario`, `updated_at`, `created_at`) VALUES
+(1, 1, 'Dongato', 'Dongato123', 'operador', NULL, NULL);
 
 --
 -- Restricciones para tablas volcadas
