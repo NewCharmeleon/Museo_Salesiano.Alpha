@@ -124,7 +124,7 @@ class PiezaController extends Controller
     $piezas=Pieza::findOrFail($id);
     $input = $request->all();
     $piezas->fill($input)->save();
-   return redirect()->back()->with('key', 'You have done successfully');
+   return redirect('piezas')->with('key', 'You have done successfully');
     //return redirect('personas');
 }       
 

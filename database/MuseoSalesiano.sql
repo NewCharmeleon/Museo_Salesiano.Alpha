@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 01-11-2015 a las 13:12:09
+-- Tiempo de generación: 09-11-2015 a las 14:48:15
 -- Versión del servidor: 5.6.19-0ubuntu0.14.04.1-log
 -- Versión de PHP: 5.5.9-1ubuntu4.13
 
@@ -137,16 +137,26 @@ INSERT INTO `fotos` (`id`, `piezas_id`, `fotos_id`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `log_Museo` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `usuarios_id` int(11) NOT NULL,
   `operacion` varchar(45) NOT NULL,
   `fecha` datetime NOT NULL,
   `tabla_modificada` char(30) NOT NULL,
   `columnas_modificadas` char(200) NOT NULL,
   `datos_viejos` char(200) NOT NULL,
-  `datos _nuevos` char(200) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `datos_nuevos` char(200) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_log_usuarios1` (`usuarios_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+
+--
+-- Volcado de datos para la tabla `log_Museo`
+--
+
+INSERT INTO `log_Museo` (`id`, `usuarios_id`, `operacion`, `fecha`, `tabla_modificada`, `columnas_modificadas`, `datos_viejos`, `datos_nuevos`) VALUES
+(1, 1, 'INSERT', '2015-11-03 23:06:59', 'personas', 'id,nombre, cuit_cuil, telefono, domicilio, email, fecha_carga_persona', 'Primera carga de Persona - No existen datos anteriores', 'adrian-11555555557-4425878-adsjfh jadf 173-adfafd@yahoo.com-2014-12-01'),
+(6, 1, 'INSERT', '2015-11-04 09:39:43', 'personas', 'id,nombre, cuit_cuil, telefono, domicilio, email, fecha_carga_persona', 'Primera carga de Persona - No existen datos anteriores', 'Miguel Angel-11222223338-4444444-su calle-SuMail@yahoo.com-2015-11-04 09:39:43'),
+(7, 1, 'INSERT', '2015-11-04 09:40:49', 'personas', 'id,nombre, cuit_cuil, telefono, domicilio, email, fecha_carga_persona', 'Primera carga de Persona - No existen datos anteriores', 'Matias Ale-11456786788-11425145-Buenos Aires 145-Toyloco@gmail.com-2015-11-04 09:40:49');
 
 -- --------------------------------------------------------
 
@@ -161,20 +171,22 @@ CREATE TABLE IF NOT EXISTS `personas` (
   `telefono` int(15) unsigned NOT NULL,
   `domicilio` varchar(30) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `fecha_carga_persona` date NOT NULL,
+  `fecha_carga_persona` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `cuit_cuil_UNIQUE` (`cuit_cuil`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
 -- Volcado de datos para la tabla `personas`
 --
 
 INSERT INTO `personas` (`id`, `nombre`, `cuit_cuil`, `telefono`, `domicilio`, `email`, `fecha_carga_persona`, `updated_at`, `created_at`) VALUES
-(1, 'Adrian Arias', '20-25448798-4', 2804456897, 'Corrientes 455', 'djfkld@gmail.com', '2015-09-17', NULL, NULL),
-(2, 'Pepe Pipon', '20-22222222-3', 2804111111, 'Su Calle 111', 'Sumail@yahoo.com.ar', '2015-01-01', NULL, NULL);
+(1, 'Adrian Arias', '20-25448798-4', 2804456897, 'Corrientes 455', 'djfkld@gmail.com', '2015-09-17 03:00:00', NULL, NULL),
+(2, 'Pepe Pipon', '20-22222222-3', 2804111111, 'Su Calle 111', 'Sumail@yahoo.com.ar', '2015-01-01 03:00:00', NULL, NULL),
+(7, 'Juan Perez', '', 4578798, '', 'fiambrin@gmail', '2015-11-04 12:39:43', '2015-11-06 22:58:36', '2015-11-04 15:39:43'),
+(8, 'Matias Ale', '11456786788', 11425145, 'Buenos Aires 145', 'Toyloco@gmail.com', '2015-11-04 12:40:49', '2015-11-04 15:40:49', '2015-11-04 15:40:49');
 
 --
 -- Disparadores `personas`
@@ -183,10 +195,30 @@ DROP TRIGGER IF EXISTS `personas_AFTER_INSERT`;
 DELIMITER //
 CREATE TRIGGER `personas_AFTER_INSERT` AFTER INSERT ON `personas`
  FOR EACH ROW BEGIN
-	INSERT INTO log_Museo (id, usuarios_id, operacion, fecha, tabla_modificada, columnas_modificadas, datos_viejos, datos_nuevos)
-	VALUES (null, id, 'INSERT', now(), 'personas',CONCAT(id,'', nombre,'', cuit_cuil,'', telefono,'', domicilio,'', email,'', fecha_carga_persona),
+INSERT INTO log_Museo (
+        id,
+    usuarios_id,
+    operacion,
+    fecha,
+    tabla_modificada,
+    columnas_modificadas,
+    datos_viejos,
+    datos_nuevos)
+	VALUES (null,
+			1, 
+            'INSERT',
+            now(),
+            'personas',
+            'id,nombre, cuit_cuil, telefono, domicilio, email, fecha_carga_persona',
 			'Primera carga de Persona - No existen datos anteriores',
-            CONCAT(NEW.id,'-', NEW.nombre,'-', NEW.cuit_cuil,'-', NEW.telefono,'-', NEW.domicilio,'-', NEW.email,'-', NEW.fecha_carga_persona));
+            CONCAT(
+            NEW.nombre,'-',
+            NEW.cuit_cuil,'-',
+            NEW.telefono,'-',
+            NEW.domicilio,'-',
+            NEW.email,'-',
+ NEW.fecha_carga_persona));
+		
 END
 //
 DELIMITER ;
@@ -203,7 +235,7 @@ CREATE TABLE IF NOT EXISTS `piezas` (
   `clasificaciones_id` int(11) NOT NULL,
   `procedencia` char(50) NOT NULL,
   `autor` char(30) NOT NULL,
-  `fecha_ejecucion` date NOT NULL,
+  `fecha_ejecucion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `tema` char(50) NOT NULL,
   `observacion` char(50) NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -216,7 +248,7 @@ CREATE TABLE IF NOT EXISTS `piezas` (
 --
 
 INSERT INTO `piezas` (`id`, `descripcion`, `clasificaciones_id`, `procedencia`, `autor`, `fecha_ejecucion`, `tema`, `observacion`, `updated_at`, `created_at`) VALUES
-(1, 'Punta de Flecha', 1, 'Paso de Indios', 'Pepe', '1978-01-01', 'Cultura', 'Estado Parcial', NULL, NULL);
+(1, 'Punta de Flecha', 1, 'Paso de Indios', 'Pepe', '1978-01-01 03:00:00', 'Cultura', 'Estado Parcial', NULL, NULL);
 
 --
 -- Disparadores `piezas`
@@ -325,7 +357,7 @@ ALTER TABLE `fotos`
 -- Filtros para la tabla `log_Museo`
 --
 ALTER TABLE `log_Museo`
-  ADD CONSTRAINT `fk_log_usuarios1` FOREIGN KEY (`id`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_log_usuarios1` FOREIGN KEY (`usuarios_id`) REFERENCES `usuarios` (`id`);
 
 --
 -- Filtros para la tabla `revisiones`

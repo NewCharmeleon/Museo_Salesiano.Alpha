@@ -43,6 +43,7 @@
     <ul class="nav navbar-nav">
       <li class="active"><a href="/personas/">Personas</a></li>
       <li><a href="/piezas/">Piezas</a></li>
+      <li><a href="/usuarios/">Usuarios</a></li>
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
           Menú en construccion <b class="caret"></b>

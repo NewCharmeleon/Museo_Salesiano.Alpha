@@ -62,10 +62,10 @@ class PersonaController extends Controller
                 
         
         $reglas = [
-            'nombre' => 'required|min:3|max:30',
+            'nombre' => 'required|min:3|max:30|regex:/^[\s\'\pLñÑáéíóúÁÉÍÓÚüÜçÇ]+$/',
             'cuit_cuil' => 'required|numeric|digits_between:9,13',
             'telefono' => 'required|numeric|min:6|digits_between:7,25',
-			'domicilio' => 'required|min:6|max:50',
+			'domicilio' => 'required|min:6|max:50|regex:/^[\s\'\pLñÑáéíóúÁÉÍÓÚüÜçÇ]+$/',
             'email' => 'required|unique:personas,email|email|min:6',
             //'fecha_carga' => 'required|date|min:9|before:yesterday'
 
@@ -123,7 +123,7 @@ class PersonaController extends Controller
     $personas=Persona::findOrFail($id);
     $input = $request->all();
     $personas->fill($input)->save();
-   return redirect()->back()->with('key', 'You have done successfully');
+   return redirect('personas')->with('key', 'You have done successfully');
     //return redirect('personas');
 }       
             

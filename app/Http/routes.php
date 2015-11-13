@@ -30,7 +30,7 @@ Route::get('/', function () {
 Route::get('/personas', 'PersonaController@personas');
 Route::get('/clientes', 'ClienteController@cliente');
 Route::get('/piezas', 'PiezaController@piezas');
-
+Route::get('/usuarios', 'UsuarioController@usuarios');
 //Route::get('/personas/{apellido}', 'PersonaController@personas');
 //Insertar
 
@@ -39,7 +39,10 @@ Route::get('/altaPersona', function () {
 });
 Route::get('/altaPieza', function () {
     return view('altaPieza');
+});Route::get('/altaUsuario', function () {
+    return view('altaUsuario');
 });
+
 
 Route::get('/personas/{id}/editarPersona', 'PersonaController@editar');
 Route::patch('/personas/editarPersona/{id}', 'PersonaController@update');
@@ -47,10 +50,14 @@ Route::patch('/personas/editarPersona/{id}', 'PersonaController@update');
 Route::get('/piezas/{id}/editarPieza', 'PiezaController@editar');
 Route::patch('/piezas/editarPieza/{id}', 'PiezaController@update');
 
+Route::get('/usuarios/{id}/editarUsuario', 'UsuarioController@editar');
+Route::patch('/usuarios/editarUsuario/{id}', 'UsuarioController@update');
+
 
 Route::post('/personas/nuevo', 'PersonaController@nuevo');
 Route::post('/clientes/nuevo', 'ClienteController@nuevo');
 Route::post('/piezas/nuevo', 'PiezaController@nuevo');
+Route::post('/usuarios/nuevo', 'UsuarioController@nuevo');
 //editar
 
 Route::patch('/clientes/{id}/editarPersona', 'ClienteController@editar');
@@ -63,6 +70,7 @@ Route::patch('/clientes/{id}/editarPersona', 'ClienteController@editar');
 Route::post('/personas/{id}/borrar', 'PersonaController@borrar');
 Route::post('/clientes/{id}/borrar', 'ClienteController@borrar');
 Route::post('/piezas/{id}/borrar', 'PiezaController@borrar');
+Route::post('/usuarios/{id}/borrar', 'UsuarioController@borrar');
 //Route::resources('/personas','PersonaController');
     
 
