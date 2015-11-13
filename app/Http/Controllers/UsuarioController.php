@@ -57,7 +57,7 @@ class UsuarioController extends Controller
         
         
         $reglas = [
-            'personas_id' => 'required|numeroc|min:3|max:100',
+            'personas_id' => 'required|numeric|min:3|max:100',
             'nombre_usuario' => 'required|numeric|min:3|max:30',
             'password' => 'required|min:8|max:50',
                      
