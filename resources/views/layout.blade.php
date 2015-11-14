@@ -10,7 +10,7 @@
     <!-- CSS de Bootstrap -->
      <link href="../css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap theme -->
-    <link href="../css/bootstrap-theme.min.css" rel="stylesheet">
+    <!--link href="../css/bootstrap-theme.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="../css/bootstrap-theme.css" rel="stylesheet">
  
@@ -41,7 +41,7 @@
        otro elemento que se pueda ocultar al minimizar la barra -->
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
-      <li class="active"><a href="/personas/">Personas</a></li>
+      <li><a href="/personas/">Personas</a></li>
       <li><a href="/usuarios/">Usuarios</a></li>
       <li><a href="/piezas/">Piezas</a></li>
        <li><a href="/clasificaciones/">Clasificaciones</a></li>

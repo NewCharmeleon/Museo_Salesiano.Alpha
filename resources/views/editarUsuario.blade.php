@@ -3,7 +3,7 @@
 
 @section ('contenido')
    
-<h1>Edicion de Usuario: {{$usuarios->nombre}}  </h1>
+<h1>Edicion de Usuario: {{$usuarios->nombre_usuario}}  </h1>
 <ul>
             @if(Session::has('flash_message'))
     <div class="alert alert-success">

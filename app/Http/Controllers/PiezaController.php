@@ -50,31 +50,21 @@ class PiezaController extends Controller
         //recibir los datos del request
         //instanciar una nueva persona
         //guardar en la base
-        
+        //$data = $clasificacion->all();
+       // $clasificacion_id = Piezas::all()->clasificacion;
         $descripcion = $request ->input("descripcion");
-        $clasificacion   = $request ->input("clasificacion");
+        $clasificacion   = $request ->input("clasificaciones_id");
         $procedencia      = $request ->input("procedencia");
         $autor     = $request ->input("autor");
-        $fechaEjecucion      = $request ->input("fechaEjecucion");
+        //$fechaEjecucion      = $request ->input("fechaEjecucion");
         $tema      = $request ->input("tema");
         $observacion      = $request ->input("observacion");
         
         
         
-        $reglas = [
-            'descripcion' => 'required|min:3|max:100',
-            'clasificacion' => 'required|numeric|min:3|max:50',
-            'procedencia' => 'required|min:8|max:50',
-            'autor' => 'required|min:3|max:30',
-            //'fechaEjecucion' => 'required|date|before:yesterday',
-            'tema' => 'required|min:8|max:50',
-            'observacion' => 'required|min:3|max:50',
-            
-
-
-            ];
+       
             //validamos...
-            $this->validate($request, $reglas);
+            $this->validate($request, Pieza::$reglas);
             $piezas = new Pieza;
             $piezas ->descripcion = $descripcion;
             $piezas ->clasificaciones_id = $clasificacion;
@@ -122,7 +112,9 @@ class PiezaController extends Controller
    
    //Session::flash('flash_message', 'Persona Actualizada satisfactoriamente');
     $piezas=Pieza::findOrFail($id);
+
     $input = $request->all();
+    $this->validate($input, Pieza::$reglas);
     $piezas->fill($input)->save();
    return redirect('piezas')->with('key', 'You have done successfully');
     //return redirect('personas');

@@ -1,9 +1,9 @@
 @extends('layout')
-@section('title','Edicion de Piezas')
+@section('title','Edicion de Revisiones')
 
 @section ('contenido')
    
-<h1>Edicion de Pieza: {{$piezas->descripcion}}  </h1>
+<h1>Edicion de Revisiones: {{$revisiones->id}}  </h1>
 <ul>
             @if(Session::has('flash_message'))
     <div class="alert alert-success">
@@ -19,12 +19,12 @@
         {{ Session::get('flash_message') }}
     </div>
 @endif
-    {!! Form::model($piezas, ['url' => ['/piezas/editarPieza', $piezas->id],'method' => 'PATCH']) !!}
-    @include('codigocomun.camposFormPieza')
+    {!! Form::model($revisiones, ['url' => ['/revisiones/editarRevision', $revisiones->id],'method' => 'PATCH']) !!}
+    @include('codigocomun.camposFormRevision')
      
     <div class="form-group">
    
-        {!! Form::submit('Actualizar Pieza', ['class' => 'btn btn-primary form-control']) !!}
+        {!! Form::submit('Actualizar Revision', ['class' => 'btn btn-primary form-control']) !!}
    
     </div>
     {!! Form::close() !!}

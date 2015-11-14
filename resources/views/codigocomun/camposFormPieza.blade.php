@@ -3,6 +3,10 @@
         {!! Form::text('descripcion',null,['class'=>'form-control']) !!}
     </div>
     <div class="form-group">
+    {!! Form::label('clasificaciones', 'Clasificacion:') !!}
+            {!! Form::select('$id = Pieza::all()->clasificacion_id') !!}
+   </div>
+    <div class="form-group">
         {!! Form::label('clasificaciones_id', 'Clasificacion:') !!}
         {!! Form::text('clasificaciones_id',null,['class'=>'form-control']) !!}
     </div>
@@ -16,10 +20,10 @@
     </div>
     <div class="form-group">
         {!! Form::label('tema', 'Tema:') !!}
-        {!! Form::email('tema',null,['class'=>'form-control']) !!}
+        {!! Form::text('tema',null,['class'=>'form-control']) !!}
     </div>
     <div class="form-group">
         {!! Form::label('observacion', 'Observaciones:') !!}
-        {!! Form::email('observacion',null,['class'=>'form-control']) !!}
+        {!! Form::text('observacion',null,['class'=>'form-control']) !!}
     </div>
         

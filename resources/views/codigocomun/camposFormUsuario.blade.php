@@ -1,5 +1,5 @@
     <div class="form-group">
-        {!! Form::select('personas_id', $usuario, null,'Personas_id:') !!}
+        {!! Form::label('personas_id','Id de la Persona:') !!}
         {!! Form::text('personas_id',null,['class'=>'form-control']) !!}
     </div>
     <div class="form-group">
@@ -10,5 +10,10 @@
         {!! Form::label('password', 'Password:') !!}
         {!! Form::text('password',null,['class'=>'form-control']) !!}
     </div>
+<div class="form-group">
+        {!! Form::label('perfil_usuario', 'Perfil del Usuario:') !!}
+        {!! Form::text('perfil_usuario',null,['class'=>'form-control']) !!}
+    </div>
+
    
         

@@ -50,16 +50,16 @@ class ClasificacionController extends Controller
         //instanciar una nueva persona
         //guardar en la base
         
-        $personas_id = $request ->input("personas_id");
-        $nombre_usuario   = $request ->input("nombreclasificacion");
-        $password      = $request ->input("password");
+        $descripcion = $request ->input("descripcion");
+        $fondos_id   = $request ->input("fondos_id");
+        $usuario_carga_id   = $request ->input("usuarios_carga_id");
         
         
         
         $reglas = [
-            'personas_id' => 'required|numeric|min:3|max:100',
-            'nombre_usuario' => 'required|numeric|min:3|max:30',
-            'password' => 'required|min:8|max:50',
+            'descripcion' => 'required|numeric|min:3|max:50',
+            'fondos_id' => 'required|numeric|min:3|max:30',
+            'usuario_carga_id' => 'required|min:8|max:50',
                      
 
 

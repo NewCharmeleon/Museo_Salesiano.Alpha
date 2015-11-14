@@ -50,7 +50,8 @@ Route::get('/altaPersona', function () {
 });
 
 Route::get('/altaPieza', function () {
-    return view('altaPieza');
+  //  $dato= Clasificaciones::all(array("id"));
+    return view('altaPieza');//->with('dato',$dato);
 });
 
 Route::get('/altaUsuario', function () {
