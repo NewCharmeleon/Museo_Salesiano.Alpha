@@ -47,38 +47,31 @@ class PiezaController extends Controller
     }      
     public function nuevo(Request $request)
     {
-        //recibir los datos del request
-        //instanciar una nueva persona
-        //guardar en la base
-        //$data = $clasificacion->all();
-       // $clasificacion_id = Piezas::all()->clasificacion;
+       
+        //recibimos los datos del request
+               
         $descripcion = $request ->input("descripcion");
         $clasificacion   = $request ->input("clasificaciones_id");
         $procedencia      = $request ->input("procedencia");
         $autor     = $request ->input("autor");
-        //$fechaEjecucion      = $request ->input("fechaEjecucion");
         $tema      = $request ->input("tema");
         $observacion      = $request ->input("observacion");
         
-        
-        
+          
        
-            //validamos...
+            //realizacion de la validacion con las reglas estaticas del modelo
             $this->validate($request, Pieza::$reglas);
+            //instanciamos una nueva pieza
             $piezas = new Pieza;
+            //vinculamos los datos recibidos al modelo
             $piezas ->descripcion = $descripcion;
             $piezas ->clasificaciones_id = $clasificacion;
             $piezas ->procedencia = $procedencia;
             $piezas ->autor = $autor;
-            //$piezas ->fecha_ejecucion = $fechaEjecucion;
             $piezas ->tema = $tema;
             $piezas ->observacion = $observacion;
             
-            
-            
-            
-            
-            
+            //guardamos en la base de datos los datos recibidos            
             $piezas ->save();
             
             return redirect('piezas');
@@ -114,7 +107,7 @@ class PiezaController extends Controller
     $piezas=Pieza::findOrFail($id);
 
     $input = $request->all();
-    $this->validate($input, Pieza::$reglas);
+    $this->validate($input, Pieza::$reglas);///esto no anda
     $piezas->fill($input)->save();
    return redirect('piezas')->with('key', 'You have done successfully');
     //return redirect('personas');

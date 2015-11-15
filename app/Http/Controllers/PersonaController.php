@@ -49,44 +49,25 @@ class PersonaController extends Controller
     }      
     public function nuevo(Request $request)
     {
-        //recibir los datos del request
-        //instanciar una nueva persona
-        //guardar en la base
-        //dd(daf);
+        //recibimos los datos del request
+       
         $nombre = $request ->input("nombre");
         $cuit   = $request ->input("cuit_cuil");
         $telefono      = $request ->input("telefono");
         $domicilio      = $request ->input("domicilio");
         $email      = $request ->input("email");
-       // $fechaCarga      = $request ->input("fecha_carga");
-                
-        
-        $reglas = [
-            'nombre' => 'required|min:3|max:30|regex:/^[\s\'\pLñÑáéíóúÁÉÍÓÚüÜçÇ]+$/',
-            'cuit_cuil' => 'required|numeric|digits_between:9,13',
-            'telefono' => 'required|numeric|min:6|digits_between:7,25',
-			'domicilio' => 'required|min:6|max:50|regex:/^[\s\'\pLñÑáéíóúÁÉÍÓÚüÜçÇ]+$/',
-            'email' => 'required|unique:personas,email|email|min:6',
-            //'fecha_carga' => 'required|date|min:9|before:yesterday'
-
-
-            ];
-            //validamos...
-             /*if ($validate->fails()) {
-            return Redirect::to('nueva')
-                ->withErrors($validate)
-                ->withInput(Input::except('password'));
-            } else {*/
+       
+                //realizacion de la validacion con las reglas estaticas del modelo
                    $this->validate($request, $reglas);
-                    $personas = new Persona;
-                    //$personas ->id = null;
+                   //instanciamos una nueva persona
+                   $personas = new Persona;
+                    //vinculamos los datos recibidos al modelo
                     $personas->nombre = $nombre;
                     $personas->cuit_cuil = $cuit;
                     $personas->telefono = $telefono;
         			$personas->domicilio = $domicilio;
                     $personas->email = $email;
-                    //$personas->fecha_carga_persona = 'now';
-            //}
+                   //guardamos en la base de datos los datos recibidos 
                  
             $personas ->save();
             //return view ('personasnuevo');

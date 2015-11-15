@@ -46,62 +46,45 @@ class DonacionController extends Controller
     }      
     public function nuevo(Request $request)
     {
-        //recibir los datos del request
-        //instanciar una nueva persona
-        //guardar en la base
+        //recibimos los datos del request
         
-        $personas_id = $request ->input("personas_id");
-        $nombre_usuario   = $request ->input("nombreclasificacion");
-        $password      = $request ->input("password");
+        $donantes_id = $request ->input("donantes_id");
+        $piezas_id  = $request ->input("piezas_id");
+         
         
         
-        
-        $reglas = [
-            'personas_id' => 'required|numeric|min:3|max:100',
-            'nombre_usuario' => 'required|numeric|min:3|max:30',
-            'password' => 'required|min:8|max:50',
-                     
-
-
-            ];
-            //validamos...
+             //realizacion de la validacion con las reglas estaticas del modelo 
             $this->validate($request, $reglas);
-            $usuarios = new Usuario;
-            $usuarios ->personas_id = $personas_id;
-            $usuarios ->nombre_usuario = $nombre_usuario;
-            $usuarios ->password = $password;
+            //instanciamos un nuevo usuario
+            $donaciones = new Donacion;
+             //vinculamos los datos recibidos al modelo
+            $donaciones ->donantes_id = $donantes_id;
+            $donaciones ->piezas_id = $piezas_id;
+            //guardamos en la base de datos los datos recibidos
+            $donaciones ->save();
             
-            
-            
-            
-            
-            
-            
-            $usuarios ->save();
-            
-            return redirect('usuarios');
-              
+            return redirect('donaciones');
     }      
     public function borrar($id){
         //recupero el registro por id de la base primweo ,lo borro
         //redirijo
-        $usuarios = Usuario::findOrFail($id);
+        $donaciones = Donacion::findOrFail($id);
         
-        $usuarios->delete();
+        $donaciones->delete();
         
-        return redirect('usuarios');
+        return redirect('donaciones');
         
                 
     }
     public function editar($id){
         //recupero el registro por id de la base primweo ,lo borro
         //redirijo
-        $usuarios = Usuario::findOrFail($id);
+        $donaciones = Donacion::findOrFail($id);
         
-        //$personas->delete();
         
-        return view('editarUsuario', ['usuarios' => $usuarios]);
-        //return view('editar', compact('personas'));
+        
+        return view('editarDonacion', ['donaciones' => $donaciones]);
+        
                 
     }
     
@@ -109,10 +92,10 @@ class DonacionController extends Controller
 {
    
    //Session::flash('flash_message', 'Persona Actualizada satisfactoriamente');
-    $usuarios=Usuario::findOrFail($id);
+    $donaciones=Donacion::findOrFail($id);
     $input = $request->all();
-    $usuarios->fill($input)->save();
-   return redirect('usuarios')->with('key', 'You have done successfully');
+    $donaciones->fill($input)->save();
+   return redirect('donaciones')->with('key', 'You have done successfully');
     //return redirect('personas');
 }       
 

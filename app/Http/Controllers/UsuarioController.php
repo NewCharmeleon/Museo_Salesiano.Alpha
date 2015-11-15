@@ -46,37 +46,26 @@ class UsuarioController extends Controller
     }      
     public function nuevo(Request $request)
     {
-        //recibir los datos del request
-        //instanciar una nueva persona
-        //guardar en la base
+        //recibimos los datos del request
         
         $personas_id = $request ->input("personas_id");
         $nombre_usuario   = $request ->input("nombreclasificacion");
         $password      = $request ->input("password");
+        $perfil_usuario  = $request ->input("perfil_usuario");
         
         
         
-        $reglas = [
-            'personas_id' => 'required|numeric|min:3|max:100',
-            'nombre_usuario' => 'required|numeric|min:3|max:30',
-            'password' => 'required|min:8|max:50',
-                     
-
-
-            ];
-            //validamos...
+        
+             //realizacion de la validacion con las reglas estaticas del modelo 
             $this->validate($request, $reglas);
+            //instanciamos un nuevo usuario
             $usuarios = new Usuario;
+             //vinculamos los datos recibidos al modelo
             $usuarios ->personas_id = $personas_id;
             $usuarios ->nombre_usuario = $nombre_usuario;
             $usuarios ->password = $password;
-            
-            
-            
-            
-            
-            
-            
+            $usuarios ->perfil_usuario = $perfil_usuario;
+            //guardamos en la base de datos los datos recibidos
             $usuarios ->save();
             
             return redirect('usuarios');

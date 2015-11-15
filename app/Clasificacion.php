@@ -9,9 +9,8 @@ class Clasificacion extends Model
     protected $table = 'clasificaciones';
 
     public static $rules = array(
-        'nombreyapellido' => 'required|between:6,100|regex:/^[\s\'\pLñÑáéíóúÁÉÍÓÚüÜçÇ]+$/',
-        'username' => 'required|between:3,20|regex:/^[\s\'\pLñÑáéíóúÁÉÍÓÚüÜçÇ]+$/',
-        'password' => 'required|between:2,100|regex:/^[\s\'\pLñÑáéíóúÁÉÍÓÚüÜçÇ]+$/',
-        'perfil' => 'required|between:6,100|regex:/^[\s\'\pLñÑáéíóúÁÉÍÓÚüÜçÇ]+$/'
+       		 'descripcion' => 'required|numeric|min:3|max:50',
+            'fondos_id' => 'required|exists:fondos,id|numeric|min:3|max:11',
+            'usuarios_carga_id' => 'required|exists:usuarios_carga,id|numeric|min:1|max:11',
     );
 }

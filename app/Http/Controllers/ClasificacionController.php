@@ -46,62 +46,48 @@ class ClasificacionController extends Controller
     }      
     public function nuevo(Request $request)
     {
-        //recibir los datos del request
-        //instanciar una nueva persona
-        //guardar en la base
+       //recibimos los datos del request
         
         $descripcion = $request ->input("descripcion");
         $fondos_id   = $request ->input("fondos_id");
         $usuario_carga_id   = $request ->input("usuarios_carga_id");
         
         
-        
-        $reglas = [
-            'descripcion' => 'required|numeric|min:3|max:50',
-            'fondos_id' => 'required|numeric|min:3|max:30',
-            'usuario_carga_id' => 'required|min:8|max:50',
-                     
-
-
-            ];
-            //validamos...
+            //realizacion de la validacion con las reglas estaticas del modelo   
             $this->validate($request, $reglas);
-            $usuarios = new Usuario;
-            $usuarios ->personas_id = $personas_id;
-            $usuarios ->nombre_usuario = $nombre_usuario;
-            $usuarios ->password = $password;
+            //instanciamos una nueva clasificacion
+            $clasificaciones = new Clasificacion;
+            //vinculamos los datos recibidos al modelo
+            $clasificaciones ->descripcion = $descripcion;
+            $clasificaciones ->fondos_id = $fondos_id;
+            $clasificaciones ->usuario_carga_id = $usuario_carga_id;
             
+            //guardamos en la base de datos los datos recibidos
+            $clasificaciones ->save();
             
-            
-            
-            
-            
-            
-            $usuarios ->save();
-            
-            return redirect('usuarios');
+            return redirect('clasificaciones');
               
     }      
     public function borrar($id){
         //recupero el registro por id de la base primweo ,lo borro
         //redirijo
-        $usuarios = Usuario::findOrFail($id);
+        $clasificaciones = Clasificacione::findOrFail($id);
         
-        $usuarios->delete();
+        $clasificaciones->delete();
         
-        return redirect('usuarios');
+        return redirect('clasificaciones');
         
                 
     }
     public function editar($id){
         //recupero el registro por id de la base primweo ,lo borro
         //redirijo
-        $usuarios = Usuario::findOrFail($id);
+        $clasificaciones = Clasificacion::findOrFail($id);
         
-        //$personas->delete();
+       
         
-        return view('editarUsuario', ['usuarios' => $usuarios]);
-        //return view('editar', compact('personas'));
+        return view('editarClasificacion', ['clasificaciones' => $clasificaciones]);
+        
                 
     }
     
@@ -109,11 +95,11 @@ class ClasificacionController extends Controller
 {
    
    //Session::flash('flash_message', 'Persona Actualizada satisfactoriamente');
-    $usuarios=Usuario::findOrFail($id);
+    $clasificaciones=Clasificacion::findOrFail($id);
     $input = $request->all();
-    $usuarios->fill($input)->save();
-   return redirect('usuarios')->with('key', 'You have done successfully');
-    //return redirect('personas');
+    $clasificaciones->fill($input)->save();
+   return redirect('clasificaciones')->with('key', 'You have done successfully');
+    
 }       
 
 

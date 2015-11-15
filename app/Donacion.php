@@ -7,4 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Donacion extends Model
 {
     protected $table = 'donaciones';
+
+     public static $rules = array(
+       		'donantes_id' => 'required|exists:donantes,id|numeric|min:3|max:11',
+       		'piezas_id' => 'required|exists:piezas,id|numeric|min:3|max:11',
+            
+            
+    );
 }
