@@ -5,7 +5,7 @@
     <title>@yield('title')</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Museo Salesiano</title>
+    <title>Museo Salesiano Don Bosco</title>
  
     <!-- CSS de Bootstrap -->
      <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -76,6 +76,7 @@
     </form>
  
     <ul class="nav navbar-nav navbar-right">
+      <li><a href="ingresar">Ingresar</a></li>
       <li><a href="/">Regresar a la Pagina Principal</a></li>
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">

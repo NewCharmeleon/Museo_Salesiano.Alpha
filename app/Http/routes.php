@@ -14,7 +14,22 @@
 Route::get('/', function () {
     return view('bienvenido');
 });
+// Authentication routes...
+Route::get('ingresar', 'Auth\AuthController@getLogin');
+Route::post('ingresar', 'Auth\AuthController@postLogin');
+Route::get('salir', 'Auth\AuthController@getLogout');
+
+// Registration routes...
+Route::get('registro', 'Auth\AuthController@getRegister');
+Route::post('registro', 'Auth\AuthController@postRegister');
 //faltan rutas
+// Password reset link request routes...
+Route::get('password/email', 'Auth\PasswordController@getEmail');
+Route::post('password/email', 'Auth\PasswordController@postEmail');
+
+// Password reset routes...
+Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
+Route::post('password/reset', 'Auth\PasswordController@postReset');
 /*Route::get('/{nombre}', function($nombre){
     return $nombre;
     
@@ -38,7 +53,7 @@ Route::get('/fondos', 'FondoController@fondos');
 Route::get('/donaciones', 'DonacionController@donaciones');
 Route::get('/donantes', 'DonanteController@donantes');
 
-
+Route::get('/home', 'HomeController@index');
 
 
 //Route::get('/personas/{apellido}', 'PersonaController@personas');
@@ -80,6 +95,7 @@ Route::get('/altaDonacion', function () {
 Route::get('/altaDonante', function () {
     return view('altaDonante');
 });
+
 
 //Rutas para editar los datos de las distintas clases y grabarlos en las mismas
 Route::get('/personas/{id}/editarPersona', 'PersonaController@editar');
