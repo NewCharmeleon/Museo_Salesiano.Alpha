@@ -6,11 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Usuario extends Model
 {
-    public static $rules = array(
+    public static $reglas = array(
        		'personas_id' => 'required|exists:personas,id|numeric|min:3|max:11',
-            'nombre_usuario' => 'required|regex:/^[\s\'\pLñÑáéíóúÁÉÍÓÚüÜçÇ]+$/|min:3|max:30',
+       		'perfil_id' => 'required|exists:perfil,id|numeric|min:3|max:13',
+            'username' => 'required|regex:/^[\s\'\pLñÑáéíóúÁÉÍÓÚüÜçÇ]+$/|min:3|max:30',
+            'email' => 'required|email|max:100',
             'password' => 'required|alpha_num|min:10|max:10',
-            'perfil_usuario' => 'required|alpha|min:8|max:13',
+            
 
     );
 }

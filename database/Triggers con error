@@ -1,0 +1,49 @@
+CREATE
+DEFINER=`root`@`localhost`
+TRIGGER `MuseoSalesiano`.`personas_AFTER_INSERT`
+AFTER INSERT ON `MuseoSalesiano`.`personas`
+FOR EACH ROW
+BEGIN
+INSERT INTO log_Museo (
+        id,
+    usuarios_id,
+    operacion,
+    fecha,
+    tabla_modificada,
+    columnas_modificadas,
+    datos_viejos,
+    datos_nuevos)
+	VALUES (null,
+			1, 
+            'INSERT',
+            now(),
+            'personas',
+            'id,nombre, cuit_cuil, telefono, domicilio, email, fecha_carga_persona',
+			'Primera carga de Persona - No existen datos anteriores',
+            CONCAT(
+            NEW.nombre,'-',
+            NEW.cuit_cuil,'-',
+            NEW.telefono,'-',
+            NEW.domicilio,'-',
+            NEW.email,'-',
+ NEW.fecha_carga_persona));
+		
+END
+
+CREATE
+DEFINER=`root`@`localhost`
+TRIGGER `MuseoSalesiano`.`piezas_BEFORE_DELETE`
+BEFORE DELETE ON `MuseoSalesiano`.`piezas`
+FOR EACH ROW
+BEGIN
+	IF EXISTS (SELECT id FROM piezas
+		WHERE (OLD.id) = id)
+        THEN SIGNAL sqlstate '45000'
+        SET message_text = 'La pieza no existe en la base de datos';
+    ELSE
+		INSERT INTO log_Museo (id, usuarios_id, operacion, fecha, tabla_modificada, columnas_modificadas, datos_viejos, datos_nuevos)
+		VALUES (null, user(), 'DELETE', now(), 'piezas',CONCAT(id,'', descripcion,'', clasificaciones_id,'', procedencia,'', autor,'', fecha_ejecucion,'', tema,'',observacion),
+			   CONCAT(OLD.id,'-', OLD.descripcion,'-', OLD.clasificaciones_id,'-', OLD.procedencia,'-', OLD.autor,'-', OLD.fecha_ejecucion,'-', OLD.tema,'',OLD.observacion),
+				'Pieza eliminada en la base de datos');
+    END IF;        
+END

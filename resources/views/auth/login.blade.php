@@ -18,13 +18,13 @@
                         </div>
                     @endif
 
-                    <form class="form-horizontal" role="form" method="POST" action="login">
+                    <form class="form-horizontal" role="form" method="POST" action="ingresar">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                         <div class="form-group">
                             <label class="col-md-4 control-label">Usuario</label>
                             <div class="col-md-6">
-                                {!! Form::text('name', null, ['class' => 'form-control', 'type' => 'name']) !!}
+                                <input type="text" class="form-control" name="username" value="{{ old('username') }}">
                             </div>
                         </div>
 

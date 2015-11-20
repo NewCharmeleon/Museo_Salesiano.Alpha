@@ -41,9 +41,34 @@
        otro elemento que se pueda ocultar al minimizar la barra -->
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
-       <li><a href="/piezas/">Piezas</a></li>
+      <li><a href="/personas/">Personas</a></li>
+      <li><a href="/usuarios/">Usuarios</a></li>
+      <li><a href="/piezas/">Piezas</a></li>
+       
+      
        <li><a href="/fotos/">Fotos</a></li>
       
+
+
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          Tareas Administrativas <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li class="divider"></li>
+          <li><a href="/clasificaciones/">Clasificaciones</a></li>
+          <li class="divider"></li>
+          <li><a href="/revisiones/">Revisiones</a></li>
+          <li class="divider"></li>
+          <li><a href="/fondos/">Fondos</a></li>
+         <li class="divider"></li>
+         <li><a href="/donaciones/">Donaciones</a></li>
+         <li class="divider"></li>
+         <li><a href="/donantes/">Donantes</a></li>
+         
+        </ul>
+      </li>
+    </ul>
  
     <form class="navbar-form navbar-left" role="search">
       <div class="form-group">
@@ -53,8 +78,16 @@
     </form>
  
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="{{route('login')}}">Ingresar</a></li>
-      <li><a href="/">Regresar a la Pagina Principal</a></li>
+       <!-- User image -->
+                  <li class="user-header">
+                    <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    <p>
+                     Usuario 
+                      <small>Miembro desde Nov. 2012</small>
+                    </p>
+                  </li>
+      
+      <li><a href="{{route('logout')}}">Salir</a></li>
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
           Menú #2 <b class="caret"></b>

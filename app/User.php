@@ -14,6 +14,10 @@ class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
                                     CanResetPasswordContract
 {
+   
+
+
+
     use Authenticatable, Authorizable, CanResetPassword;
 
     /**
@@ -22,7 +26,15 @@ class User extends Model implements AuthenticatableContract,
      * @var string
      */
     protected $table = 'usuarios';
+    public static $reglas = array(
+            'personas_id' => 'required|exists:personas,id|numeric|min:3|max:11',
+            'perfil_id' => 'required|exists:perfil,id|numeric|min:3|max:13',
+            'username' => 'required|regex:/^[\s\'\pLñÑáéíóúÁÉÍÓÚüÜçÇ]+$/|min:3|max:30',
+            'email' => 'required|email|max:100',
+            'password' => 'required|alpha_num|min:10|max:10',
+            
 
+    );
     /**
      * The attributes that are mass assignable.
      *

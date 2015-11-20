@@ -9,7 +9,7 @@
                 <div class="panel-body">
                     @if (count($errors) > 0)
                         <div class="alert alert-danger">
-                            <strong>Whoops!</strong> Ingresaste algo malll...<br><br>
+                            <strong>Whoops!</strong> Has ingresado un dato erroneo.<br><br>
                             <ul>
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
@@ -18,13 +18,25 @@
                         </div>
                     @endif
 
-                    <form class="form-horizontal" role="form" method="POST" action="/auth/register">
+                    <form class="form-horizontal" role="form" method="POST" action="{{route('registro')}}">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
+                           <div class="form-group">
+                            <label class="col-md-4 control-label">Id de la Persona</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="personas_id" value=" ">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Id del Rol de la Persona</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="perfil_id" value=" ">
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="col-md-4 control-label">Usuario</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+                                <input type="text" class="form-control" name="username" value="{{ old('username') }}">
                             </div>
                         </div>
 

@@ -14,14 +14,24 @@
 Route::get('/', function () {
     return view('bienvenido');
 });
+Route::get('login', function () {
+    return view('bienvenido');
+});
 // Authentication routes...
-Route::get('ingresar', 'Auth\AuthController@getLogin');
+Route::get('ingresar', [
+    'uses' => 'Auth\AuthController@getLogin',
+    'as'   => 'login']);
+
 Route::post('ingresar', 'Auth\AuthController@postLogin');
-Route::get('salir', 'Auth\AuthController@getLogout');
+Route::get('salir', [
+    'uses' => 'Auth\AuthController@getLogout',
+    'as' => 'logout']);
 
 // Registration routes...
-Route::get('registro', 'Auth\AuthController@getRegister');
-Route::post('registro', 'Auth\AuthController@postRegister');
+Route::get('registro', [ 
+    'uses' => 'Auth\AuthController@getRegister',
+    'as' => 'registro']);
+Route::post('registro','Auth\AuthController@postRegister');
 //faltan rutas
 // Password reset link request routes...
 Route::get('password/email', 'Auth\PasswordController@getEmail');
