@@ -2,10 +2,10 @@
 -- version 4.0.10deb1
 -- http://www.phpmyadmin.net
 --
--- Servidor: localhost
--- Tiempo de generación: 13-11-2015 a las 17:11:58
--- Versión del servidor: 5.6.19-0ubuntu0.14.04.1-log
--- Versión de PHP: 5.5.9-1ubuntu4.13
+-- Host: localhost
+-- Generation Time: Nov 21, 2015 at 12:02 PM
+-- Server version: 5.6.19-0ubuntu0.14.04.1-log
+-- PHP Version: 5.5.9-1ubuntu4.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de datos: `MuseoSalesiano`
+-- Database: `MuseoSalesiano`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `clasificaciones`
+-- Table structure for table `clasificaciones`
 --
 
 CREATE TABLE IF NOT EXISTS `clasificaciones` (
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `clasificaciones` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Volcado de datos para la tabla `clasificaciones`
+-- Dumping data for table `clasificaciones`
 --
 
 INSERT INTO `clasificaciones` (`id`, `descripcion`, `fondos_id`, `usuarios_carga_id`, `fecha_carga_id`, `updated_at`, `created_at`) VALUES
@@ -48,7 +48,7 @@ INSERT INTO `clasificaciones` (`id`, `descripcion`, `fondos_id`, `usuarios_carga
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `donaciones`
+-- Table structure for table `donaciones`
 --
 
 CREATE TABLE IF NOT EXISTS `donaciones` (
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `donaciones` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Volcado de datos para la tabla `donaciones`
+-- Dumping data for table `donaciones`
 --
 
 INSERT INTO `donaciones` (`id`, `donantes_id`, `piezas_id`, `fecha_donacion`, `updated_at`, `created_at`) VALUES
@@ -73,7 +73,7 @@ INSERT INTO `donaciones` (`id`, `donantes_id`, `piezas_id`, `fecha_donacion`, `u
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `donantes`
+-- Table structure for table `donantes`
 --
 
 CREATE TABLE IF NOT EXISTS `donantes` (
@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `donantes` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Volcado de datos para la tabla `donantes`
+-- Dumping data for table `donantes`
 --
 
 INSERT INTO `donantes` (`id`, `personas_id`, `fecha_carga`, `updated_at`, `created_at`) VALUES
@@ -96,7 +96,7 @@ INSERT INTO `donantes` (`id`, `personas_id`, `fecha_carga`, `updated_at`, `creat
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `fondos`
+-- Table structure for table `fondos`
 --
 
 CREATE TABLE IF NOT EXISTS `fondos` (
@@ -111,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `fondos` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Volcado de datos para la tabla `fondos`
+-- Dumping data for table `fondos`
 --
 
 INSERT INTO `fondos` (`id`, `descripcion`, `usuarios_id`, `fecha_carga_fondo`, `updated_at`, `created_at`) VALUES
@@ -120,7 +120,7 @@ INSERT INTO `fondos` (`id`, `descripcion`, `usuarios_id`, `fecha_carga_fondo`, `
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `fotos`
+-- Table structure for table `fotos`
 --
 
 CREATE TABLE IF NOT EXISTS `fotos` (
@@ -134,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `fotos` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Volcado de datos para la tabla `fotos`
+-- Dumping data for table `fotos`
 --
 
 INSERT INTO `fotos` (`id`, `piezas_id`, `fotos_id`, `updated_at`, `created_at`) VALUES
@@ -143,7 +143,7 @@ INSERT INTO `fotos` (`id`, `piezas_id`, `fotos_id`, `updated_at`, `created_at`) 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `log_Museo`
+-- Table structure for table `log_Museo`
 --
 
 CREATE TABLE IF NOT EXISTS `log_Museo` (
@@ -160,7 +160,7 @@ CREATE TABLE IF NOT EXISTS `log_Museo` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
--- Volcado de datos para la tabla `log_Museo`
+-- Dumping data for table `log_Museo`
 --
 
 INSERT INTO `log_Museo` (`id`, `usuarios_id`, `operacion`, `fecha`, `tabla_modificada`, `columnas_modificadas`, `datos_viejos`, `datos_nuevos`) VALUES
@@ -172,7 +172,29 @@ INSERT INTO `log_Museo` (`id`, `usuarios_id`, `operacion`, `fecha`, `tabla_modif
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `personas`
+-- Table structure for table `perfil`
+--
+
+CREATE TABLE IF NOT EXISTS `perfil` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `rol` char(13) DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `perfil`
+--
+
+INSERT INTO `perfil` (`id`, `rol`, `updated_at`, `created_at`) VALUES
+(1, 'administrador', NULL, NULL),
+(2, 'operador', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `personas`
 --
 
 CREATE TABLE IF NOT EXISTS `personas` (
@@ -190,7 +212,7 @@ CREATE TABLE IF NOT EXISTS `personas` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
--- Volcado de datos para la tabla `personas`
+-- Dumping data for table `personas`
 --
 
 INSERT INTO `personas` (`id`, `nombre`, `cuit_cuil`, `telefono`, `domicilio`, `email`, `fecha_carga_persona`, `updated_at`, `created_at`) VALUES
@@ -201,7 +223,7 @@ INSERT INTO `personas` (`id`, `nombre`, `cuit_cuil`, `telefono`, `domicilio`, `e
 (9, 'Juan Román Riquelme', '11356487453', 11412568, 'Tierra del Fuego 543', 'JJRiquelme@yahoo.com.ar', '2015-11-09 18:23:13', '2015-11-09 21:23:34', '2015-11-09 21:23:13');
 
 --
--- Disparadores `personas`
+-- Triggers `personas`
 --
 DROP TRIGGER IF EXISTS `personas_AFTER_INSERT`;
 DELIMITER //
@@ -238,7 +260,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `piezas`
+-- Table structure for table `piezas`
 --
 
 CREATE TABLE IF NOT EXISTS `piezas` (
@@ -253,17 +275,18 @@ CREATE TABLE IF NOT EXISTS `piezas` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Volcado de datos para la tabla `piezas`
+-- Dumping data for table `piezas`
 --
 
 INSERT INTO `piezas` (`id`, `descripcion`, `clasificaciones_id`, `procedencia`, `autor`, `fecha_ejecucion`, `tema`, `observacion`, `updated_at`, `created_at`) VALUES
-(1, 'Punta de Flecha', 1, 'Paso de Indios', 'Pepe', '1978-01-01 03:00:00', 'Cultura', 'Estado Parcial', NULL, NULL);
+(1, 'Punta de Flecha', 1, 'Paso de Indios', 'Pepe', '1978-01-01 03:00:00', 'Cultura', 'Estado Parcial', NULL, NULL),
+(2, 'Punta de lanza', 1, 'Rio Senguer', 'Pepe Sanchez', '2015-11-14 03:15:02', 'Cultura', 'Pieza Intacta', NULL, NULL);
 
 --
--- Disparadores `piezas`
+-- Triggers `piezas`
 --
 DROP TRIGGER IF EXISTS `piezas_BEFORE_DELETE`;
 DELIMITER //
@@ -286,7 +309,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `revisiones`
+-- Table structure for table `revisiones`
 --
 
 CREATE TABLE IF NOT EXISTS `revisiones` (
@@ -294,8 +317,8 @@ CREATE TABLE IF NOT EXISTS `revisiones` (
   `usuarios_revision_id` int(11) NOT NULL,
   `piezas_id` int(11) NOT NULL,
   `fecha_revision` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `estado_de_conservacion` char(1) NOT NULL,
-  `ubicacion` char(1) NOT NULL,
+  `estado_de_conservacion` char(11) NOT NULL,
+  `ubicacion` char(11) NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -304,7 +327,7 @@ CREATE TABLE IF NOT EXISTS `revisiones` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Volcado de datos para la tabla `revisiones`
+-- Dumping data for table `revisiones`
 --
 
 INSERT INTO `revisiones` (`id`, `usuarios_revision_id`, `piezas_id`, `fecha_revision`, `estado_de_conservacion`, `ubicacion`, `updated_at`, `created_at`) VALUES
@@ -313,82 +336,90 @@ INSERT INTO `revisiones` (`id`, `usuarios_revision_id`, `piezas_id`, `fecha_revi
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuarios`
+-- Table structure for table `usuarios`
 --
 
 CREATE TABLE IF NOT EXISTS `usuarios` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `personas_id` int(11) NOT NULL,
-  `nombre_usuario` char(30) NOT NULL,
-  `password` varchar(10) NOT NULL,
-  `perfil_usuario` char(13) NOT NULL DEFAULT 'operador',
+  `perfil_id` int(13) NOT NULL DEFAULT '2',
+  `username` char(30) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(60) NOT NULL,
+  `remember_token` char(100) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `perfil_UNIQUE` (`perfil_usuario`),
-  KEY `fk_usuarios_personas1_idx` (`personas_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+  UNIQUE KEY `name_UNIQUE` (`username`),
+  UNIQUE KEY `email_UNIQUE` (`email`),
+  KEY `fk_usuarios_personas1_idx` (`personas_id`),
+  KEY `fk_usuarios_perfil1_idx` (`perfil_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 --
--- Volcado de datos para la tabla `usuarios`
+-- Dumping data for table `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `personas_id`, `nombre_usuario`, `password`, `perfil_usuario`, `updated_at`, `created_at`) VALUES
-(1, 1, 'Dongato', 'Dongato123', 'operador', NULL, NULL);
+INSERT INTO `usuarios` (`id`, `personas_id`, `perfil_id`, `username`, `email`, `password`, `remember_token`, `updated_at`, `created_at`) VALUES
+(1, 1, 1, 'Dongato', 'Dongato.tlw@gmail.com', '$2y$10$nV4igC0G2TmWTXxWh8NBlO51UsEyQqT6GnURGrsAOIxIVJ6mbnDsK', 'PIvGxhUB0bUhGx0wt0dGQz9FAe1y3XFrwwWtggx4cPU6NRVGu9EzN2qN0mTZ', '2015-11-21 04:05:45', '2015-11-20 21:51:37'),
+(2, 2, 2, 'nuevo', 'nuevo@gmail.com', '$2y$10$B.AveoSqjPGGosoHvb0lYuuBT85K1IGCyNQIDkHX02LcneXpbHNIi', NULL, '2015-11-20 21:50:11', '2015-11-20 21:50:11'),
+(13, 7, 2, 'otrousuario', 'otrousuario@gmail.com', '$2y$10$tNXMPUb7Lutvcw0UaSGeWelCQuxcgdeac8ZzJOyUFaDnLFqgLAKr6', NULL, '2015-11-21 02:55:27', '2015-11-21 02:55:27');
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `clasificaciones`
+-- Constraints for table `clasificaciones`
 --
 ALTER TABLE `clasificaciones`
   ADD CONSTRAINT `fk_clasificaciones_fondos1` FOREIGN KEY (`fondos_id`) REFERENCES `fondos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `donaciones`
+-- Constraints for table `donaciones`
 --
 ALTER TABLE `donaciones`
   ADD CONSTRAINT `fk_donaciones_donantes1` FOREIGN KEY (`donantes_id`) REFERENCES `donantes` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_donaciones_piezas1` FOREIGN KEY (`piezas_id`) REFERENCES `piezas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `donantes`
+-- Constraints for table `donantes`
 --
 ALTER TABLE `donantes`
   ADD CONSTRAINT `fk_donantes_personas` FOREIGN KEY (`personas_id`) REFERENCES `personas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `fondos`
+-- Constraints for table `fondos`
 --
 ALTER TABLE `fondos`
   ADD CONSTRAINT `fk_fondos_usuarios1` FOREIGN KEY (`usuarios_id`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `fotos`
+-- Constraints for table `fotos`
 --
 ALTER TABLE `fotos`
   ADD CONSTRAINT `fk_fotos_piezas1` FOREIGN KEY (`piezas_id`) REFERENCES `piezas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `log_Museo`
+-- Constraints for table `log_Museo`
 --
 ALTER TABLE `log_Museo`
   ADD CONSTRAINT `fk_log_usuarios1` FOREIGN KEY (`usuarios_id`) REFERENCES `usuarios` (`id`);
 
 --
--- Filtros para la tabla `revisiones`
+-- Constraints for table `revisiones`
 --
 ALTER TABLE `revisiones`
   ADD CONSTRAINT `fk_revisiones_piezas1` FOREIGN KEY (`piezas_id`) REFERENCES `piezas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_revisiones_usuarios1` FOREIGN KEY (`usuarios_revision_id`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `usuarios`
+-- Constraints for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD CONSTRAINT `fk_usuarios_personas1` FOREIGN KEY (`personas_id`) REFERENCES `personas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_usuarios_perfil1` FOREIGN KEY (`perfil_id`) REFERENCES `perfil` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_usuarios_personas1` FOREIGN KEY (`personas_id`) REFERENCES `personas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_usuarios_personas2` FOREIGN KEY (`personas_id`) REFERENCES `personas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
