@@ -41,12 +41,9 @@
        otro elemento que se pueda ocultar al minimizar la barra -->
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
-      <li><a href="/personas">Personas</a></li>
-      <li><a href="/usuarios">Usuarios</a></li>
-      <li><a href="/piezas">Piezas</a></li>
-       
       
-       <li><a href="/fotos/">Fotos</a></li>
+      <li><a href="/piezas/">Piezas</a></li>
+      <li><a href="/fotos/">Fotos</a></li>
       
 
 

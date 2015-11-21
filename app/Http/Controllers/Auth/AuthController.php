@@ -64,17 +64,17 @@ class AuthController extends Controller
         'username' => 'required',
         'password' => 'required',
     ]);
-    $usuarios = $request ->input("username");
+    //$usuarios = $request ->input("username");
 
 
     $credentials = $request->only('username', 'password');
 
     if ($this->auth->attempt($credentials, $request->has('remember')))
     {
-        return view("layoutadmin", ['username' => $usuarios]);
+        return view("layout");// ,['username' => $usuarios]);
     }
 
-    return view()->with("msjerror","credenciales incorrectas");
+    return "credenciales incorrectas";
 
     }
 

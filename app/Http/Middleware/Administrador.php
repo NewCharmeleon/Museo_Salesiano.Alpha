@@ -1,30 +1,13 @@
 <?php
 
 namespace App\Http\Middleware;
-
-use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use Closure;
+use Session;
 
-class RedirectIfAuthenticated
+
+class Administrador
 {
-    /**
-     * The Guard implementation.
-     *
-     * @var Guard
-     */
-    protected $auth;
-
-    /**
-     * Create a new filter instance.
-     *
-     * @param  Guard  $auth
-     * @return void
-     */
-    public function __construct(Guard $auth)
-    {
-        $this->auth = $auth;
-    }
-
     /**
      * Handle an incoming request.
      *
@@ -32,16 +15,21 @@ class RedirectIfAuthenticated
      * @param  \Closure  $next
      * @return mixed
      */
+    protected $auth;
+
+    public function __construct(Guard $auth)
+    {
+        this->auth=$auth;
+        //this->middleware=('admin');
+    }
+
     public function handle($request, Closure $next)
     {
-        if ($this->auth->check()) {
-
-
-            switch ($this->auth->user()->perfil_id)
+        switch ($this->auth->user()->perfil_id)
         {
             case '1':
             //Administrador
-                return redirect()->to('admin');
+                //return redirect()->to('admin');
                 break;
 
             case '2':
@@ -52,10 +40,6 @@ class RedirectIfAuthenticated
             default:
                 return redirect()->to('login');
                 break;
-        }
-
-
-            return redirect('/bienvenido');
         }
 
         return $next($request);
