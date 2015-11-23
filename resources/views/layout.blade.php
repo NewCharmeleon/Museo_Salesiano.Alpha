@@ -54,17 +54,7 @@
  
     <ul class="nav navbar-nav navbar-right">
       <li><a href="{{route('login')}}">Ingresar</a></li>
-      <li><a href="/">Regresar a la Pagina Principal</a></li>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-          Menú #2 <b class="caret"></b>
-        </a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Acción #1</a></li>
-          <li><a href="#">Acción #2</a></li>
-          <li><a href="#">Acción #3</a></li>
-          <li class="divider"></li>
-          <li><a href="#">Acción #4</a></li>
+      
         </ul>
       </li>
     </ul>
@@ -73,8 +63,13 @@
 
   
     <h1>Museo Don Bosco</h1>
-    Bienvenido al Museo...
+    <p>Bienvenidos al Museo Salesiano...<p>
     <div class="container">
+    <img src="imagenes/museo-salesiano-1.jpg" class="img-circle" alt="Avatar">
+    <img src="imagenes/museo-salesiano-2.jpg" class="img-circle" alt="Avatar">
+    <img src="imagenes/museo-salesiano-3.jpg" class="img-circle" alt="Avatar">
+    <img src="imagenes/museo-regional-salesiano-de-rawson-1.jpg" class="img-circle" alt="Avatar">
+
             @yield('contenido')
      </div>
     <!-- Librería jQuery requerida por los plugins de JavaScript -->

@@ -83,7 +83,7 @@
                     <li><img src="imagenes/operador-100x100.jpeg" class="img-circle" alt="Avatar"></li>
                     <li>
                     <p>
-                           Usuario {{ Auth::user()->username }}
+                          Bienvenido Usuario  {{ Auth::user()->username }}
                      </p></li>
                      <ul>
                      <small>Miembro desde Nov. 2015</small>
