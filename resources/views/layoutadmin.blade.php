@@ -82,6 +82,8 @@
                   <li class="user-header">
                     <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                     <p>
+                    <li class="divider"></li>
+                     Panel de Administrador
                      Usuario 
                       <small>Miembro desde Nov. 2012</small>
                     </p>

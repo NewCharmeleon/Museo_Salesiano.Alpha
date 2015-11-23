@@ -71,8 +71,15 @@ class AuthController extends Controller
 
     if ($this->auth->attempt($credentials, $request->has('remember')))
     {
-        return view("layout");// ,['username' => $usuarios]);
-    }
+         
+            //$user = User::findOrFail($request->perfil_id);
+            $perfil=$this->auth->user()->perfil_id;//$request->perfil_id;
+         if ($perfil=='1'){   
+            return view("layoutadmin");// ,['username' => $usuarios]);
+            }else{
+                    return view("layoutoperador");
+            }   
+        }
 
     return "credenciales incorrectas";
 

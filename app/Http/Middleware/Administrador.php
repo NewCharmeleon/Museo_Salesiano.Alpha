@@ -18,7 +18,7 @@ class Administrador
     protected $auth;
 
     public function __construct(Guard $auth)
-    {
+    {   dd('hola');
         this->auth=$auth;
         //this->middleware=('admin');
     }

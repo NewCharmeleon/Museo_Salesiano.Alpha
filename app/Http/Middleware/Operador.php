@@ -17,7 +17,7 @@ class Operador
     protected $auth;
 
     public function __construct(Guard $auth)
-    {
+    {dd('hola');
         this->auth=$auth;
     }
 
