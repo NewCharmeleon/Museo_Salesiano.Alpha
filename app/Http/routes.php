@@ -45,7 +45,7 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 //Rutas para ver las paginas con los datos cargados de las distintas clases 
 //Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'is_admin']], function () {
-Route::group(['middleware' => ['auth', 'administrador'], 'prefix'=>'admin'], function(){
+//Route::group(['middleware' => ['auth', 'administrador'], 'prefix'=>'admin'], function(){
     Route::get('/', function () {
         return view('layoutadmin');
     });
@@ -154,7 +154,7 @@ Route::group(['middleware' => ['auth', 'administrador'], 'prefix'=>'admin'], fun
     Route::post('/donaciones/{id}/borrar', 'DonacionController@borrar');
     Route::post('/donantes/{id}/borrar', 'DonanteClienteController@borrar');
 
-});
+//});
 //------------------------------------------------------------///////
 Route::group(['middleware' => ['auth', 'operador'], 'prefix'=>'operador'], function(){
     //dd('estoy en la ruta del mid');

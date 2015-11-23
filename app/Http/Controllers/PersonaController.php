@@ -55,7 +55,7 @@ class PersonaController extends Controller
         $email      = $request ->input("email");
        
                 //realizacion de la validacion con las reglas estaticas del modelo
-                   $this->validate($request, $reglas);
+                   $this->validate($request, Persona::$reglas);
                    //instanciamos una nueva persona
                    $personas = new Persona;
                     //vinculamos los datos recibidos al modelo
@@ -118,7 +118,7 @@ class PersonaController extends Controller
        //Session::flash('flash_message', 'Persona Actualizada satisfactoriamente');
         $personas=Persona::findOrFail($id);
         $input = $request->all();
-        $this->validate($input, Persona::$reglas);///esto no anda
+        $this->validate($request, Persona::$reglas);///esto no anda
         $personas->fill($input)->save();
        return redirect('personas')->with('key', 'You have done successfully');
         //return redirect('personas');
