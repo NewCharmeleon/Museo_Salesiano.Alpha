@@ -77,31 +77,26 @@
       <button type="submit" class="btn btn-default">Enviar</button>
     </form>
  
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="nav navbar-nav navbar">
+       <li class="divider"></li>
+
+                    <li> <div>Panel de Administrador</div></li>
        <!-- User image -->
+
                   <li class="user-header">
-                    <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                  <div>
+                    <li><img src="imagenes/admin-100x100.jpg" class="img-circle" alt="Avatar"></li>
+                    <li>
                     <p>
-                    <li class="divider"></li>
-                     Panel de Administrador
-                     Usuario 
-                      <small>Miembro desde Nov. 2012</small>
-                    </p>
-                  </li>
-      
-      <li><a href="{{route('logout')}}">Salir</a></li>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-          Menú #2 <b class="caret"></b>
-        </a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Acción #1</a></li>
-          <li><a href="#">Acción #2</a></li>
-          <li><a href="#">Acción #3</a></li>
-          <li class="divider"></li>
-          <li><a href="#">Acción #4</a></li>
-        </ul>
-      </li>
+                           Usuario {{ Auth::user()->username }}
+                     </p></li>
+                     <ul>
+                     <small>Miembro desde Nov. 2015</small>
+                     </ul>
+                     
+      <div>
+      <li><a href="{{route('logout')}}">Cerrar Sesion</a></li></div>
+      </div>
     </ul>
   </div>
 </nav>

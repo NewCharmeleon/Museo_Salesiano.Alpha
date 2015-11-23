@@ -93,6 +93,7 @@ class DonanteController extends Controller
    //Session::flash('flash_message', 'Persona Actualizada satisfactoriamente');
     $donantes=Donante::findOrFail($id);
     $input = $request->all();
+    $this->validate($input, Donante::$reglas);///esto no anda
     $donantes->fill($input)->save();
    return redirect('donantes')->with('key', 'You have done successfully');
     

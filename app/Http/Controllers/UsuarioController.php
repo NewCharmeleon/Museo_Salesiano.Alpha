@@ -100,6 +100,7 @@ class UsuarioController extends Controller
    //Session::flash('flash_message', 'Persona Actualizada satisfactoriamente');
     $usuarios=Usuario::findOrFail($id);
     $input = $request->all();
+    $this->validate($input, Usuario::$reglas);///esto no anda
     $usuarios->fill($input)->save();
    return redirect('usuarios')->with('key', 'You have done successfully');
     //return redirect('personas');

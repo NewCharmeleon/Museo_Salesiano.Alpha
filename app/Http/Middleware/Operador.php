@@ -17,22 +17,23 @@ class Operador
     protected $auth;
 
     public function __construct(Guard $auth)
-    {dd('hola');
-        this->auth=$auth;
+    {//dd('hola');
+        $this->auth=$auth;
     }
 
     public function handle($request, Closure $next)
-    {
+    {//dd('estoy en el handle redirect operadorrrr');
         switch ($this->auth->user()->perfil_id)
         {
             case '1':
             //Administrador
             dd('hola');
-                return redirect()->to('admin');
+                return redirect()->to('administrador');
                 break;
 
             case '2':
             //Operador
+            //dd('hola ope');
                 //return redirect()->to('operador');
                 break;
 

@@ -95,6 +95,7 @@ class FondoController extends Controller
    //Session::flash('flash_message', 'Persona Actualizada satisfactoriamente');
     $fondos=Fondo::findOrFail($id);
     $input = $request->all();
+    $this->validate($input, Fondo::$reglas);///esto no anda
     $fondos->fill($input)->save();
    return redirect('fondos')->with('key', 'You have done successfully');
     //return redirect('personas');

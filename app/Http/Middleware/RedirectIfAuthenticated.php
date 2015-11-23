@@ -21,7 +21,7 @@ class RedirectIfAuthenticated
      * @return void
      */
     public function __construct(Guard $auth)
-    {
+    {//dd('estoy en el redirect');
         $this->auth = $auth;
     }
 
@@ -33,7 +33,7 @@ class RedirectIfAuthenticated
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {
+    {//dd('estoy en el handle redirect');
         if ($this->auth->check()) {
 
 
@@ -41,15 +41,18 @@ class RedirectIfAuthenticated
         {
             case '1':
             //Administrador
+           // dd('estoy en el redirect');
                 return redirect()->to('admin');
                 break;
 
             case '2':
             //Operador
+            //dd('estoy en el login op');
                 return redirect()->to('operador');
                 break;
 
             default:
+                dd('estoy en el login redirect');
                 return redirect()->to('login');
                 break;
         }

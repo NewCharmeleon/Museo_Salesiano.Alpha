@@ -42,8 +42,8 @@
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
       
-      <li><a href="/piezas/">Piezas</a></li>
-      <li><a href="/fotos/">Fotos</a></li>
+      <li><a href="{!!URL::to('piezas')!!}">Piezas</a></li>
+      <li><a href="/fotos">Fotos</a></li>
       
 
 
@@ -75,30 +75,26 @@
     </form>
  
     <ul class="nav navbar-nav navbar-right">
+       <li class="divider"></li>
+
+                    <li> <div>Panel de Operador</div></li>
        <!-- User image -->
+
                   <li class="user-header">
-                    <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                  <div>
+                    <li><img src="imagenes/operador-100x100.jpeg" class="img-circle" alt="Avatar"></li>
+                    <li>
                     <p>
-                    <li class="divider"></li>
-                     Panel de Operador
-                     Usuario 
-                     <small>Miembro desde Nov. 2012</small>
-                    </p>
-                  </li>
+                           Usuario {{ Auth::user()->username }}
+                     </p></li>
+                     <ul>
+                     <small>Miembro desde Nov. 2015</small>
+                     </ul>
+                     
+      <div>
+      <li><a href="{{route('logout')}}">Cerrar Sesion</a></li></div>
+      </div>
       
-      <li><a href="{{route('logout')}}">Salir</a></li>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-          Menú #2 <b class="caret"></b>
-        </a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Acción #1</a></li>
-          <li><a href="#">Acción #2</a></li>
-          <li><a href="#">Acción #3</a></li>
-          <li class="divider"></li>
-          <li><a href="#">Acción #4</a></li>
-        </ul>
-      </li>
     </ul>
   </div>
 </nav>

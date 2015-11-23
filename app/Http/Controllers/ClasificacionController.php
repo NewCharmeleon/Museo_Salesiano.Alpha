@@ -97,6 +97,7 @@ class ClasificacionController extends Controller
    //Session::flash('flash_message', 'Persona Actualizada satisfactoriamente');
     $clasificaciones=Clasificacion::findOrFail($id);
     $input = $request->all();
+    $this->validate($input, Clasificacion::$reglas);///esto no anda
     $clasificaciones->fill($input)->save();
    return redirect('clasificaciones')->with('key', 'You have done successfully');
     

@@ -42,7 +42,9 @@ Route::post('password/email', 'Auth\PasswordController@postEmail');
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 
+
 //Rutas para ver las paginas con los datos cargados de las distintas clases 
+//Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'is_admin']], function () {
 Route::group(['middleware' => ['auth', 'administrador'], 'prefix'=>'admin'], function(){
     Route::get('/', function () {
         return view('layoutadmin');
@@ -155,10 +157,11 @@ Route::group(['middleware' => ['auth', 'administrador'], 'prefix'=>'admin'], fun
 });
 //------------------------------------------------------------///////
 Route::group(['middleware' => ['auth', 'operador'], 'prefix'=>'operador'], function(){
+    //dd('estoy en la ruta del mid');
     Route::get('/', function () {
         return view('layoutoperador');
     });
-
+    
     Route::get('/fondos', 'FondoController@fondos');
     Route::get('/clasificaciones', 'ClasificacionController@clasificaciones');
     Route::get('/piezas', 'PiezaController@piezas');

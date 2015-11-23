@@ -97,6 +97,7 @@ class RevisionController extends Controller
    //Session::flash('flash_message', 'Persona Actualizada satisfactoriamente');
     $revisiones=Revision::findOrFail($id);
     $input = $request->all();
+    $this->validate($input, Revision::$reglas);///esto no anda
     $revisiones->fill($input)->save();
    return redirect('revisiones')->with('key', 'You have done successfully');
     

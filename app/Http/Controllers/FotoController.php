@@ -95,6 +95,7 @@ class FotoController extends Controller
    //Session::flash('flash_message', 'Persona Actualizada satisfactoriamente');
     $fotos=Foto::findOrFail($id);
     $input = $request->all();
+    $this->validate($input, Foto::$reglas);///esto no anda
     $fotos->fill($input)->save();
    return redirect('fotos')->with('key', 'You have done successfully');
     

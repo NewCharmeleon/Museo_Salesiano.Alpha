@@ -73,10 +73,13 @@ class AuthController extends Controller
     {
          
             //$user = User::findOrFail($request->perfil_id);
-            $perfil=$this->auth->user()->perfil_id;//$request->perfil_id;
-         if ($perfil=='1'){   
-            return view("layoutadmin");// ,['username' => $usuarios]);
-            }else{
+            $perfil=$this->auth->user()->perfil_id;
+            $nombre=$this->auth->user()->username;
+            if ($perfil=='1'){   
+                return view('layoutadmin');
+            }
+            else
+            {
                     return view("layoutoperador");
             }   
         }

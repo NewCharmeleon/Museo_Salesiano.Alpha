@@ -94,6 +94,7 @@ class DonacionController extends Controller
    //Session::flash('flash_message', 'Persona Actualizada satisfactoriamente');
     $donaciones=Donacion::findOrFail($id);
     $input = $request->all();
+    $this->validate($input, Donacion::$reglas);///esto no anda
     $donaciones->fill($input)->save();
    return redirect('donaciones')->with('key', 'You have done successfully');
     //return redirect('personas');

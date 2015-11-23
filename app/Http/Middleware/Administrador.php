@@ -18,8 +18,8 @@ class Administrador
     protected $auth;
 
     public function __construct(Guard $auth)
-    {   dd('hola');
-        this->auth=$auth;
+    {   //dd('estoy en el handle redirect administrador');
+        $this->auth=$auth;
         //this->middleware=('admin');
     }
 

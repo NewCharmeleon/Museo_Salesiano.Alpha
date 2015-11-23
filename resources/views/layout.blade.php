@@ -73,6 +73,7 @@
 
   
     <h1>Museo Don Bosco</h1>
+    Bienvenido al Museo...
     <div class="container">
             @yield('contenido')
      </div>
