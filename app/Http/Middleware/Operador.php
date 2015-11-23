@@ -27,7 +27,7 @@ class Operador
         {
             case '1':
             //Administrador
-            dd('hola');
+           // dd('hola');
                 return redirect()->to('administrador');
                 break;
 
@@ -38,7 +38,7 @@ class Operador
                 break;
 
             default:
-            dd('hola');
+           // dd('hola');
                 return redirect()->to('login');
                 break;
         }

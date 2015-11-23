@@ -52,7 +52,7 @@ class RedirectIfAuthenticated
                 break;
 
             default:
-                dd('estoy en el login redirect');
+                //dd('estoy en el login redirect');
                 return redirect()->to('login');
                 break;
         }

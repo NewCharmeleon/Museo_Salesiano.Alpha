@@ -43,29 +43,26 @@
     <ul class="nav navbar-nav">
       <li><a href="/personas">Personas</a></li>
       <li><a href="/usuarios">Usuarios</a></li>
+      <li><a href="/donantes/">Donantes</a></li>
       <li><a href="/piezas">Piezas</a></li>
-       
-      
-       <li><a href="/fotos/">Fotos</a></li>
-      
-
-
+      <li><a href="/fotos/">Fotos</a></li>
+      <li><a href="/donaciones/">Donaciones</a></li>
+      <li><a href="/clasificaciones/">Clasificaciones</a></li>
+      <li><a href="/revisiones/">Revisiones</a></li>
+      <li><a href="/fondos/">Fondos</a></li>
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
           Tareas Administrativas <b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
           <li class="divider"></li>
-          <li><a href="/clasificaciones/">Clasificaciones</a></li>
+          <li><a href="/registro/">Registrar Usuario</a></li>
           <li class="divider"></li>
-          <li><a href="/revisiones/">Revisiones</a></li>
+          <li><a href="/revisar/">Revisar Pieza</a></li>
           <li class="divider"></li>
-          <li><a href="/fondos/">Fondos</a></li>
-         <li class="divider"></li>
-         <li><a href="/donaciones/">Donaciones</a></li>
-         <li class="divider"></li>
-         <li><a href="/donantes/">Donantes</a></li>
-         
+          <li><a href="/clasificar/">Clasificar Pieza</a></li>
+          <li class="divider"></li>
+          <li><a href="/donar/">Donar Pieza</a></li>
         </ul>
       </li>
     </ul>
