@@ -15,27 +15,16 @@ class PiezaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
+     /**
+     * Display the specified resource.
      *
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
     public function piezas ($descripcion = null)
     {
-        //$personas=Persona::all();
-        //metodo 1:
-        //$resultado = DB::select ('SELECT * FROM operaciones WHERE banco',['ape'=> "%$apellido%"]);
         
-        //metodo 2: laravel query builder
-        //$resultado = DB::table('cliente')
-        //              ->where('apellido','like', "%$apellido%")
-        //              ->orderBy('apellido')->get();
-        //metodo 3: modelos (eloquent orm)
             if ($descripcion=='todos'){
                 $resultado = Pieza::
                       orderBy('descripcion')->get();
@@ -44,7 +33,18 @@ class PiezaController extends Controller
                         ->orderBy('descripcion')->get();
             }
             return view('piezas', ["piezas" => $resultado]);
-    }      
+    }     
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */ 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function nuevo(Request $request)
     {
        
@@ -76,7 +76,13 @@ class PiezaController extends Controller
             
             return redirect('piezas');
               
-    }      
+    }   
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */   
     public function borrar($id){
         //recupero el registro por id de la base primweo ,lo borro
         //redirijo
@@ -88,6 +94,12 @@ class PiezaController extends Controller
         
                 
     }
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function editar($id){
         //recupero el registro por id de la base primweo ,lo borro
         //redirijo
@@ -99,59 +111,6 @@ class PiezaController extends Controller
         //return view('editar', compact('personas'));
                 
     }
-    
-    public function update($id, Request $request)
-{
-   
-   //Session::flash('flash_message', 'Persona Actualizada satisfactoriamente');
-    $piezas=Pieza::findOrFail($id);
-
-    $input = $request->all();
-    $this->validate($input, Pieza::$reglas);///esto no anda
-    $piezas->fill($input)->save();
-   return redirect('piezas')->with('key', 'You have done successfully');
-    //return redirect('personas');
-}       
-
-
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
     /**
      * Update the specified resource in storage.
      *
@@ -159,14 +118,19 @@ class PiezaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    
+    public function update($id, Request $request)
+    {
+       
+       //Session::flash('flash_message', 'Persona Actualizada satisfactoriamente');
+        $piezas=Pieza::findOrFail($id);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+        $input = $request->all();
+        $this->validate($input, Pieza::$reglas);///esto no anda
+        $piezas->fill($input)->save();
+       return redirect('piezas')->with('key', 'You have done successfully');
+        //return redirect('personas');
+    }       
+
     public function destroy($id)
     {
         //

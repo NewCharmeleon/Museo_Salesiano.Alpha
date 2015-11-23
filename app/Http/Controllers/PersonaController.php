@@ -19,25 +19,16 @@ class PersonaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
-       //$personas=Persona::all();
-       
-       // return view('personas.index', compact('personas'));
-                
-    }
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    
     public function personas ($nombre = null)
     {
-        //$personas=Persona::all();
-        //metodo 1:
-        //$resultado = DB::select ('SELECT * FROM operaciones WHERE banco',['ape'=> "%$apellido%"]);
         
-        //metodo 2: laravel query builder
-        //$resultado = DB::table('cliente')
-        //              ->where('apellido','like', "%$apellido%")
-        //              ->orderBy('apellido')->get();
-        //metodo 3: modelos (eloquent orm)
             if ($nombre=='todos'){
                 $resultado = Persona::
                       orderBy('id')->get();
@@ -46,7 +37,13 @@ class PersonaController extends Controller
                         ->orderBy('id')->get();
             }
             return view('personas', ["personas" => $resultado]);
-    }      
+    }    
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */  
     public function nuevo(Request $request)
     {
         //recibimos los datos del request
@@ -73,7 +70,13 @@ class PersonaController extends Controller
             //return view ('personasnuevo');
             return redirect('personas');
               
-    }      
+    }  
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */    
     public function borrar($id){
         //recupero el registro por id de la base primweo ,lo borro
         //redirijo
@@ -85,6 +88,12 @@ class PersonaController extends Controller
         
                 
     }
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function editar($id){
         //recupero el registro por id de la base primweo ,lo borro
         //redirijo
@@ -96,20 +105,25 @@ class PersonaController extends Controller
         //return view('editar', compact('personas'));
                 
     }
-    
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function update($id, Request $request)
-{
-   
-   //Session::flash('flash_message', 'Persona Actualizada satisfactoriamente');
-    $personas=Persona::findOrFail($id);
-    $input = $request->all();
-    $this->validate($input, Persona::$reglas);///esto no anda
-    $personas->fill($input)->save();
-   return redirect('personas')->with('key', 'You have done successfully');
-    //return redirect('personas');
-}       
-            
-
+    {
+       
+       //Session::flash('flash_message', 'Persona Actualizada satisfactoriamente');
+        $personas=Persona::findOrFail($id);
+        $input = $request->all();
+        $this->validate($input, Persona::$reglas);///esto no anda
+        $personas->fill($input)->save();
+       return redirect('personas')->with('key', 'You have done successfully');
+        //return redirect('personas');
+    }       
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -122,57 +136,7 @@ class PersonaController extends Controller
       return View::make('personas/form')->with('persona', $persona);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-   /* public function update(Request $request, $id)
-    {
-        //
-    }*/
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+       
     public function destroy($id)
     {
         //

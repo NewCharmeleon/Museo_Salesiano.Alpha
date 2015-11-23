@@ -56,7 +56,7 @@
         </a>
         <ul class="dropdown-menu">
           <li class="divider"></li>
-          <li><a href="/registro/">Registrar Usuario</a></li>
+          <li><a href="{{route('registro')}}">Registrar Usuario</a></li>
           <li class="divider"></li>
           <li><a href="/revisar/">Revisar Pieza</a></li>
           <li class="divider"></li>

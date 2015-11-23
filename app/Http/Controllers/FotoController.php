@@ -14,27 +14,16 @@ class FotoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
+   /**
+     * Display the specified resource.
      *
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
     public function fotos ($descripcion = null)
     {
-        //$personas=Persona::all();
-        //metodo 1:
-        //$resultado = DB::select ('SELECT * FROM operaciones WHERE banco',['ape'=> "%$apellido%"]);
         
-        //metodo 2: laravel query builder
-        //$resultado = DB::table('cliente')
-        //              ->where('apellido','like', "%$apellido%")
-        //              ->orderBy('apellido')->get();
-        //metodo 3: modelos (eloquent orm)
             if ($descripcion=='todos'){
                 $resultado = Foto::
                       orderBy('descripcion')->get();
@@ -43,7 +32,18 @@ class FotoController extends Controller
                         ->orderBy('id')->get();
             }
             return view('fotos', ["fotos" => $resultado]);
-    }      
+    }  
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */    
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function nuevo(Request $request)
     {
          //recibimos los datos del request
@@ -65,7 +65,13 @@ class FotoController extends Controller
             
             return redirect('fotos');
               
-    }      
+    }   
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */   
     public function borrar($id){
         //recupero el registro por id de la base primweo ,lo borro
         //redirijo
@@ -77,6 +83,12 @@ class FotoController extends Controller
         
                 
     }
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function editar($id){
         //recupero el registro por id de la base primweo ,lo borro
         //redirijo
@@ -88,58 +100,6 @@ class FotoController extends Controller
         
                 
     }
-    
-    public function update($id, Request $request)
-{
-   
-   //Session::flash('flash_message', 'Persona Actualizada satisfactoriamente');
-    $fotos=Foto::findOrFail($id);
-    $input = $request->all();
-    $this->validate($input, Foto::$reglas);///esto no anda
-    $fotos->fill($input)->save();
-   return redirect('fotos')->with('key', 'You have done successfully');
-    
-}       
-
-
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
     /**
      * Update the specified resource in storage.
      *
@@ -147,14 +107,18 @@ class FotoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    
+    public function update($id, Request $request)
+    {
+       
+       //Session::flash('flash_message', 'Persona Actualizada satisfactoriamente');
+        $fotos=Foto::findOrFail($id);
+        $input = $request->all();
+        $this->validate($input, Foto::$reglas);///esto no anda
+        $fotos->fill($input)->save();
+       return redirect('fotos')->with('key', 'You have done successfully');
+        
+    }       
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
