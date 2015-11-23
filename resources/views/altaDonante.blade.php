@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layoutadmin')
 @section('title','Carga de Donantes')
 
 @section ('contenido')

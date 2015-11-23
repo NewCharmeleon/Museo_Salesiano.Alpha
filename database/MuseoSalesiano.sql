@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 21, 2015 at 12:02 PM
+-- Generation Time: Nov 23, 2015 at 07:11 PM
 -- Server version: 5.6.19-0ubuntu0.14.04.1-log
 -- PHP Version: 5.5.9-1ubuntu4.13
 
@@ -209,7 +209,7 @@ CREATE TABLE IF NOT EXISTS `personas` (
   `created_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `cuit_cuil_UNIQUE` (`cuit_cuil`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `personas`
@@ -220,42 +220,8 @@ INSERT INTO `personas` (`id`, `nombre`, `cuit_cuil`, `telefono`, `domicilio`, `e
 (2, 'Pepe Pipon', '20-22222222-3', 2804111111, 'Su Calle 111', 'Sumail@yahoo.com.ar', '2015-01-01 03:00:00', NULL, NULL),
 (7, 'Juan Perez', '', 4578798, '', 'fiambrin@gmail', '2015-11-04 12:39:43', '2015-11-06 22:58:36', '2015-11-04 15:39:43'),
 (8, 'Matias Ale', '11456786788', 11425145, 'Buenos Aires 145', 'Toyloco@gmail.com', '2015-11-04 12:40:49', '2015-11-04 15:40:49', '2015-11-04 15:40:49'),
-(9, 'Juan Román Riquelme', '11356487453', 11412568, 'Tierra del Fuego 543', 'JJRiquelme@yahoo.com.ar', '2015-11-09 18:23:13', '2015-11-09 21:23:34', '2015-11-09 21:23:13');
-
---
--- Triggers `personas`
---
-DROP TRIGGER IF EXISTS `personas_AFTER_INSERT`;
-DELIMITER //
-CREATE TRIGGER `personas_AFTER_INSERT` AFTER INSERT ON `personas`
- FOR EACH ROW BEGIN
-INSERT INTO log_Museo (
-        id,
-    usuarios_id,
-    operacion,
-    fecha,
-    tabla_modificada,
-    columnas_modificadas,
-    datos_viejos,
-    datos_nuevos)
-	VALUES (null,
-			1, 
-            'INSERT',
-            now(),
-            'personas',
-            'id,nombre, cuit_cuil, telefono, domicilio, email, fecha_carga_persona',
-			'Primera carga de Persona - No existen datos anteriores',
-            CONCAT(
-            NEW.nombre,'-',
-            NEW.cuit_cuil,'-',
-            NEW.telefono,'-',
-            NEW.domicilio,'-',
-            NEW.email,'-',
- NEW.fecha_carga_persona));
-		
-END
-//
-DELIMITER ;
+(9, 'Juan Román Riquelme', '11356487453', 11412568, 'Tierra del Fuego 543', 'JJRiquelme@yahoo.com.ar', '2015-11-09 18:23:13', '2015-11-09 21:23:34', '2015-11-09 21:23:13'),
+(10, 'Ivo Lares', '11305557899', 280444565, 'Av Libertador', 'Ivo@gmail.com', '2015-11-23 18:38:20', '2015-11-23 21:38:20', '2015-11-23 21:38:20');
 
 -- --------------------------------------------------------
 
@@ -361,9 +327,9 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `personas_id`, `perfil_id`, `username`, `email`, `password`, `remember_token`, `updated_at`, `created_at`) VALUES
-(1, 1, 1, 'Dongato', 'Dongato.tlw@gmail.com', '$2y$10$nV4igC0G2TmWTXxWh8NBlO51UsEyQqT6GnURGrsAOIxIVJ6mbnDsK', 'PIvGxhUB0bUhGx0wt0dGQz9FAe1y3XFrwwWtggx4cPU6NRVGu9EzN2qN0mTZ', '2015-11-21 04:05:45', '2015-11-20 21:51:37'),
+(1, 1, 1, 'Dongato', 'Dongato.tlw@gmail.com', '$2y$10$nV4igC0G2TmWTXxWh8NBlO51UsEyQqT6GnURGrsAOIxIVJ6mbnDsK', 'l6b2Xwh81tBdn1EECWg1yQ4QNCXNISjSBkPCJjZcILUeIwcdXyNs67dgAccC', '2015-11-24 01:07:40', '2015-11-20 21:51:37'),
 (2, 2, 2, 'nuevo', 'nuevo@gmail.com', '$2y$10$B.AveoSqjPGGosoHvb0lYuuBT85K1IGCyNQIDkHX02LcneXpbHNIi', NULL, '2015-11-20 21:50:11', '2015-11-20 21:50:11'),
-(13, 7, 2, 'otrousuario', 'otrousuario@gmail.com', '$2y$10$tNXMPUb7Lutvcw0UaSGeWelCQuxcgdeac8ZzJOyUFaDnLFqgLAKr6', NULL, '2015-11-21 02:55:27', '2015-11-21 02:55:27');
+(13, 7, 2, 'otrousuario', 'otrousuario@gmail.com', '$2y$10$tNXMPUb7Lutvcw0UaSGeWelCQuxcgdeac8ZzJOyUFaDnLFqgLAKr6', 'L5ivQHKfYPLHEiP0JWY4Z17MWn6nbXZyixvnbFyxVu5tyHiCk9zJ1b3YNZUJ', '2015-11-24 00:46:46', '2015-11-21 02:55:27');
 
 --
 -- Constraints for dumped tables
